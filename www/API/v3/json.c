@@ -85,4 +85,98 @@ class requests
                         return '';
                 }
         }
+        
+        public static function insertMesures($id, $id_capteur, $id_meta, $valeur)
+   		 {
+        	$dbi = self::getInstance();
+
+        	try {
+       		$stmt_insertMesures = 
+       		$dbi->dbh->prepare('INSERT INTO mesures (id, id_capteur, id_meta, valeur)
+           	 					VALUES (:id, :id_capteur, :id_meta, :mesure);'
+           	 					);
+       
+            $stmt_insertMesures ->bindParam(':id', $id);
+            $stmt_insertMesures ->bindParam(':id_capteur', $id_capteur);
+            $stmt_insertMesures ->bindParam(':id_meta', $id_meta);
+            $stmt_insertMesures ->bindParam(':valeur', $mesure);
+
+            return $stmt_insertMesures->execute();
+
+        } catch (PDOException $e) {
+            print "Error insertMesures " . $e->getMessage() ;
+            return '';
+        }
+    }
+    
+    
+          public static function insertMetaMesures ($id, $id_hub, $date, $gps_long, $gps_lat)
+   		 {
+        	$dbi = self::getInstance();
+
+        	try {
+       		$stmt_insertMetaMesures  = 
+       		$dbi->dbh->prepare('INSERT INTO meta_mesures (id, id_hub, date, gps_long, gps_lat)
+       							VALUES (:id, :id_hub, :date, :gps_long, :gps_lat);'
+       							);
+       
+            $stmt_insertMetaMesures  ->bindParam(':id', $id);
+            $stmt_insertMetaMesures  ->bindParam(':id_hub', $id_hub);
+            $stmt_insertMetaMesures  ->bindParam(':date', date('Y-m-d G:I:S',$date);
+            $stmt_insertMetaMesures  ->bindParam(':gps_long', $gps_long);
+            $stmt_insertMetaMesures  ->bindParam(':gps_lat', $gps_lat);
+
+            return  $stmt_insertMetaMesures->execute();
+
+        } catch (PDOException $e) {
+            print "Error insertMetaMesures " . $e->getMessage() ;
+            return '';
+        }
+    }
+    
+         public static function insertCapteurs($id, $id_hub, $type)
+   		 {
+        	$dbi = self::getInstance();
+
+        	try {
+       		$stmt_insertCapteurs  = 
+       		$dbi->dbh->prepare('INSERT INTO capteurs (id, id_hub, type) 
+       							VALUES(:id, :id_hub, :type);'
+       							);
+       
+            $stmt_insertCapteurs  ->bindParam(':id', $id);
+            $stmt_insertCapteurs  ->bindParam(':id_hub', $id_hub);
+            $stmt_insertCapteurs  ->bindParam(':$type', $type);
+
+            return  $stmt_insertCapteurs->execute();
+
+        } catch (PDOException $e) {
+            print "Error insertCapteurs " . $e->getMessage() ;
+            return '';
+        }
+    }
+    
+    
+    public static function insertHubs($name)
+   		 {
+        	$dbi = self::getInstance();
+
+        	try {
+       		$stmt_insertHubs  = 
+       		$dbi->dbh->prepare('INSERT INTO hubs (name) VALUES (:name);');
+       
+            $stmt_insertHubs  ->bindParam(':name', $name);
+
+            return  $stmt_insertHubs->execute();
+
+        } catch (PDOException $e) {
+            print "Error insertHubs " . $e->getMessage() ;
+            return '';
+        }
+    }
+    
+    
+    
+    
+        
 }
