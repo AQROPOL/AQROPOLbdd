@@ -1,5 +1,22 @@
 class requests
 {
+	protected $dbh;
+	protected static $instance;
+
+	private function __construct()
+    	{
+        	try {
+			$dsn = 'mysql:=' . DB_Config::read('db.host') . ';dbname='  . DB_Config::read('db.name');
+			$username = DB_Config::read('db.username');
+			$password = DB_Config::read('db.password');
+			$this->dbh = new PDO($dsn, $username, $password);
+			$this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		} catch (PDOException $e) {
+			print "Error!: " . $e->getMessage();
+			die();
+		}
+	}
+
 	public static function getInstance()
 	{
 		if (!isset(self::$instance)) {
