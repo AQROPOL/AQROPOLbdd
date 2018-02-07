@@ -27,30 +27,29 @@
 			$tabMatchWebMapping = array();
 			$tabMatchWebMapping["type"] = "FeatureCollection";
 			$tabFeatures = array();
-			$i = 0;
-			foreach ($mesure as &$meta_mesures) {
+			for ($mesure as &$meta_mesures) {
 				echo $mesure;
 				$tabFeatures["type"] = "Feature";
 
 				$tabFeaturesProperties = array();
-				$tabFeaturesProperties["id_mesure"]	= $mesure[$i]["mesures"]["id"];
-				$tabFeaturesProperties["id_capteur"]	= $mesure[$i]["mesures"]["id_capteur"];
-				$tabFeaturesProperties["valeur"]		= $mesure[$i]["mesures"]["valeur"];
-				$tabFeaturesProperties["type"]		= $mesure[$i]["mesures"]["type"];
-				$tabFeaturesProperties["id_meta"] 		= $mesure[$i]["id"];
-				$tabFeaturesProperties["id_hub"] 		= $mesure[$i]["id_hub"];
-				$tabFeaturesProperties["date"] 		= $mesure[$i]["date"];
+				$tabFeaturesProperties["id_mesure"]	= $mesure["mesures"]["id"];
+				$tabFeaturesProperties["id_capteur"]	= $mesure["mesures"]["id_capteur"];
+				$tabFeaturesProperties["valeur"]		= $mesure["mesures"]["valeur"];
+				$tabFeaturesProperties["type"]		= $mesure["mesures"]["type"];
+				$tabFeaturesProperties["id_meta"] 		= $mesure["id"];
+				$tabFeaturesProperties["id_hub"] 		= $mesure["id_hub"];
+				$tabFeaturesProperties["date"] 		= $mesure["date"];
 				$tabFeatures["properties"] = $tabFeaturesProperties;
 
 				$tabFeaturesGeometry = array();
 				$tabFeaturesGeometry["type"] = "Point";
 				$tabFeaturesGeometryCoordinates = array();
-				$tabFeaturesGeometryCoordinates[0] 	= $mesure[$i]["gps_lat"];
-				$tabFeaturesGeometryCoordinates[1] 	= $mesure[$i]["gps_long"];
+				$tabFeaturesGeometryCoordinates[0] 	= $mesure["gps_lat"];
+				$tabFeaturesGeometryCoordinates[1] 	= $mesure["gps_long"];
 				$tabFeaturesGeometry["coordinates"] = $tabFeaturesGeometryCoordinates;
 				$tabFeatures["geometry"] = $tabFeaturesGeometry;
 
-				$i++;
+				//$i++;
 			}
 			$tabMatchWebMapping["features"] = $tabFeatures;
 			echo json_encode($tabMatchWebMapping);
