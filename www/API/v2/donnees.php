@@ -28,24 +28,25 @@
 			$tabMatchWebMapping["type"] = "FeatureCollection";
 			$tabFeatures = array();
 			$i = 0;
-			foreach ($mesure as &$result) {
+			echo $result;
+			foreach ($mesure as &$result["meta_mesures"]) {
 				$tabFeatures["type"] = "Feature";
 
 				$tabFeaturesProperties = array();
-				$tabFeaturesProperties["id_mesure"]	= $result["meta_mesures"][$i++]["mesures"]["id"];
-				$tabFeaturesProperties["id_capteur"]	= $result["meta_mesures"][$i++]["mesures"]["id_capteur"];
-				$tabFeaturesProperties["valeur"]		= $result["meta_mesures"][$i++]["mesures"]["valeur"];
-				$tabFeaturesProperties["type"]		= $result["meta_mesures"][$i++]["mesures"]["type"];
-				$tabFeaturesProperties["id_meta"] 		= $result["meta_mesures"][$i++]["id"];
-				$tabFeaturesProperties["id_hub"] 		= $result["meta_mesures"][$i++]["id_hub"];
-				$tabFeaturesProperties["date"] 		= $result["meta_mesures"][$i++]["date"];
+				$tabFeaturesProperties["id_mesure"]	= $mesure[$i++]["mesures"]["id"];
+				$tabFeaturesProperties["id_capteur"]	= $mesure[$i++]["mesures"]["id_capteur"];
+				$tabFeaturesProperties["valeur"]		= $mesure[$i++]["mesures"]["valeur"];
+				$tabFeaturesProperties["type"]		= $mesure[$i++]["mesures"]["type"];
+				$tabFeaturesProperties["id_meta"] 		= $mesure[$i++]["id"];
+				$tabFeaturesProperties["id_hub"] 		= $mesure[$i++]["id_hub"];
+				$tabFeaturesProperties["date"] 		= $mesure[$i++]["date"];
 				$tabFeatures["properties"] = $tabFeaturesProperties;
 
 				$tabFeaturesGeometry = array();
 				$tabFeaturesGeometry["type"] = "Point";
 				$tabFeaturesGeometryCoordinates = array();
-				$tabFeaturesGeometryCoordinates[0] = $result["meta_mesures"][$i++]["gps_lat"];
-				$tabFeaturesGeometryCoordinates[1] = $result["meta_mesures"][$i++]["gps_long"];
+				$tabFeaturesGeometryCoordinates[0] 	= $result[$i++]["gps_lat"];
+				$tabFeaturesGeometryCoordinates[1] 	= $result[$i++]["gps_long"];
 				$tabFeaturesGeometry["coordinates"] = $tabFeaturesGeometryCoordinates;
 				$tabFeatures["geometry"] = $tabFeaturesGeometry;
 			}
