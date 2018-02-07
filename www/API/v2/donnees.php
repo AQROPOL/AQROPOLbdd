@@ -28,7 +28,7 @@
 			$tabMatchWebMapping["type"] = "FeatureCollection";
 			$tabFeatures = array();
 			$i = 0;
-			foreach ($mesure as $result) {
+			foreach ($mesure as &$result) {
 				$tabFeatures["type"] = "Feature";
 
 				$tabFeaturesProperties = array();
