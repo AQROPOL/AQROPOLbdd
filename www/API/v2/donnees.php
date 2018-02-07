@@ -29,6 +29,7 @@
 			$tabFeatures = array();
 			$i = 0;
 			foreach ($mesure as &$meta_mesures) {
+				echo $mesure;
 				$tabFeatures["type"] = "Feature";
 
 				$tabFeaturesProperties = array();
@@ -44,8 +45,8 @@
 				$tabFeaturesGeometry = array();
 				$tabFeaturesGeometry["type"] = "Point";
 				$tabFeaturesGeometryCoordinates = array();
-				$tabFeaturesGeometryCoordinates[0] 	= $result[$i]["gps_lat"];
-				$tabFeaturesGeometryCoordinates[1] 	= $result[$i]["gps_long"];
+				$tabFeaturesGeometryCoordinates[0] 	= $mesure[$i]["gps_lat"];
+				$tabFeaturesGeometryCoordinates[1] 	= $mesure[$i]["gps_long"];
 				$tabFeaturesGeometry["coordinates"] = $tabFeaturesGeometryCoordinates;
 				$tabFeatures["geometry"] = $tabFeaturesGeometry;
 
