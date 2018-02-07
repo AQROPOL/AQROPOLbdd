@@ -1,5 +1,6 @@
 <?php
 	require 'db_access.php';
+	header("Content-type: application/json");
 
 	if ($_SERVER['REQUEST_METHOD'] === 'GET'){
 			$meta_mesures = array();
