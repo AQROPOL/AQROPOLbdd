@@ -22,13 +22,13 @@
 				$meta_mesures[$i]["mesures"] = $mesures;
 				$i++;
 			}
-			$result = array("meta_mesures" => $meta_mesures);
+			//$result = array("meta_mesures" => $meta_mesures);
 			////////////
 			$tabMatchWebMapping = array();
 			$tabMatchWebMapping["type"] = "FeatureCollection";
 			$tabFeatures = array();
 			$i = 0;
-			foreach ($mesure as &$result["meta_mesures"]) {
+			foreach ($mesure as &$meta_mesures) {
 				$tabFeatures["type"] = "Feature";
 
 				$tabFeaturesProperties = array();
