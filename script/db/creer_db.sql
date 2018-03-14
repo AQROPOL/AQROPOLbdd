@@ -10,7 +10,7 @@ DROP TABLE IF EXISTS mesures,meta_mesures,capteurs,hubs;
  */
 CREATE TABLE hubs (
 id INT AUTO_INCREMENT,
-name VARCHAR(255) UNIQUE,
+name VARCHAR(255) UNIQUE NOT NULL,
 PRIMARY KEY (id)
 );
 
@@ -21,6 +21,7 @@ PRIMARY KEY (id)
 CREATE TABLE capteurs (
 id INT AUTO_INCREMENT,
 id_hub INT NOT NULL,
+name VARCHAR(255) NOT NULL,
 type VARCHAR(255) NOT NULL,
 PRIMARY KEY (id)
 );
@@ -40,7 +41,6 @@ gps_long FLOAT NOT NULL, -- longitude
 hash BINARY(32) NOT NULL,
 PRIMARY KEY (id)
 );
-
 
 /*
  * Table des mesures
@@ -69,3 +69,5 @@ ALTER TABLE mesures ADD CONSTRAINT fk_mesure_meta FOREIGN KEY (id_meta) REFERENC
 ON DELETE CASCADE; -- Si on supprime un ensemble de mesures on supprime les mesures associées
 
 ALTER TABLE meta_mesures ADD CONSTRAINT uq_hash_meta UNIQUE (hash,id_hub); -- Contrainte d'unicité sur le couple hash/id_hub
+
+ALTER TABLE capteurs ADD CONSTRAINT uq_hub_capteur_name UNIQUE (id_hub,name); -- Contrainte d'unicité sur le couple id_hub/name
