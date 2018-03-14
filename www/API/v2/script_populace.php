@@ -14,13 +14,20 @@ for ($i = 1; $i < 1000; $i++) {
      $hash = hash('sha256', $dateTmp);
      $bool = $stmt_insertMetaMesures->execute(array(':id_hub' => $randIdHub, ':date' => $dateTmp, ':gps_long' => $aleaLong, ':gps_lat' => $aleaLat, ":hash" => $hash));
      if ($bool) echo "Success\n";
-     else echo "Fail\n";
+     else {
+          echo "\nPDO::errorInfo():\n";
+          print_r($db->errorInfo());
+     }
 
 
      $randIdCapteur = rand(1,4);
      $randValeur = rand(0,10000);
 
-     $stmt_insertMesures->execute(array(':id_capteur' => $randIdCapteur, ':id_meta' => $i, ':valeur' => $randValeur));
-
+     $bool = $stmt_insertMesures->execute(array(':id_capteur' => $randIdCapteur, ':id_meta' => $i, ':valeur' => $randValeur));
+     if ($bool) echo "Success\n";
+     else {
+          echo "\nPDO::errorInfo():\n";
+          print_r($db->errorInfo());
+     }
 }
  ?>
