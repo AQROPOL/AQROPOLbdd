@@ -2,6 +2,7 @@
 	require 'db_access.php';
 	header("Content-type: application/json");
 
+	// Encoding JSON
 	if ($_SERVER['REQUEST_METHOD'] === 'GET'){
 			$meta_mesures = array();
 			$stmt_readMesure->execute();
@@ -50,5 +51,9 @@
 			}
 			$tabMatchWebMapping["features"] = $tabFeatures;
 			echo json_encode($tabMatchWebMapping);
+	}
+	// DECODING JSON
+	if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+		
 	}
 ?>
