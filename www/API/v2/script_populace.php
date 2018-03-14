@@ -26,7 +26,7 @@ for ($i = 1; $i < 1000; $i++) {
      $bool = $stmt_insertMesures->execute(array(':id_capteur' => $randIdCapteur, ':id_meta' => $i, ':valeur' => $randValeur));
      if ($bool) echo "Success\n";
      else {
-          echo "\nPDO::errorInfo():\n";
+          echo "<br>PDO::errorInfo():";
           print_r($db->errorInfo());
      }
 }
