@@ -15,7 +15,7 @@ for ($i = 1; $i < 1000; $i++) {
      $bool = $stmt_insertMetaMesures->execute(array(':id_hub' => $randIdHub, ':date' => $dateTmp, ':gps_long' => $aleaLong, ':gps_lat' => $aleaLat, ":hash" => $hash));
      if ($bool) echo "Success\n";
      else {
-          echo "\nPDO::errorInfo():\n";
+          echo "<br>PDO::errorInfo():";
           print_r($db->errorInfo());
      }
 
