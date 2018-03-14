@@ -26,4 +26,3 @@
 	$stmt_readHub = $db_read->prepare('SELECT id,name FROM hubs;');
 	$stmt_readLastHash = $db_read->prepare('SELECT id_hub, hash FROM meta_mesures m1 WHERE date = (SELECT max(date) FROM meta_mesures m2 WHERE m1.id_hub = m2.id_hub)');
 ?>
-
