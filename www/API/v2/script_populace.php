@@ -12,7 +12,10 @@ for ($i = 1; $i < 1000; $i++) {
      $dateTmp = $date->getTimestamp();
      $randIdHub = rand(1,2);
      $hash = hash('sha256', $dateTmp);
-     $stmt_insertMetaMesures->execute(array(':id_hub' => $randIdHub, ':date' => $dateTmp, ':gps_long' => $aleaLong, ':gps_lat' => $aleaLat, ":hash" => $hash));
+     $bool = $stmt_insertMetaMesures->execute(array(':id_hub' => $randIdHub, ':date' => $dateTmp, ':gps_long' => $aleaLong, ':gps_lat' => $aleaLat, ":hash" => $hash));
+     if ($bool) echo "Success\n";
+     else echo "Fail\n";
+
 
      $randIdCapteur = rand(1,4);
      $randValeur = rand(0,10000);
