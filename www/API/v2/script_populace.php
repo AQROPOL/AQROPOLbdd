@@ -2,7 +2,7 @@
 
 require 'db_access.php';
 
-for (int i = 0; i < 1000; i++) {
+for ($i = 0; $i < 1000; $i++) {
      $aleaLat = rand(4802, 4820);
      $aleaLat = $aleaLat / 100;
      $aleaLong = rand(-144, -184);
