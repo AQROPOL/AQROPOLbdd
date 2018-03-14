@@ -15,7 +15,7 @@
 	}
 	else
 		$db_read = $db;
-	$stmt_insertMesures = $db->prepare('INSERT INTO mesures (id_capteur, id_meta, valeur) VALUES (:id_capteur, :id_meta, :mesure);');
+	$stmt_insertMesures = $db->prepare('INSERT INTO mesures (id_capteur, id_meta, valeur) VALUES (:id_capteur, :id_meta, :valeur);');
 	$stmt_insertMetaMesures = $db->prepare('INSERT INTO meta_mesures (id_hub, date, gps_long, gps_lat, hash) VALUES (:id_hub, :date, :gps_long, :gps_lat, :hash);');
 	$stmt_insertCapteurs = $db->prepare('INSERT INTO capteurs (id_hub, name, type) VALUES (:id_hub, :name, :type);');
 	$stmt_insertHubs = $db->prepare('INSERT INTO hubs (name) VALUES (:name);');
