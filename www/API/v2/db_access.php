@@ -15,9 +15,9 @@
 	}
 	else
 		$db_read = $db;
-	$stmt_insertMesures = $db->prepare('INSERT INTO mesures (id, id_capteur, id_meta, valeur) VALUES (:id, :id_capteur, :id_meta, :mesure);');
-	$stmt_insertMetaMesures = $db->prepare('INSERT INTO meta_mesures (id, id_hub, date, gps_long, gps_lat) VALUES (:id, :id_hub, :date, :gps_long, :gps_lat);');
-	$stmt_insertCapteurs = $db->prepare('INSERT INTO capteurs (id, id_hub, type) VALUES (:id, :id_hub, :type);');
+	$stmt_insertMesures = $db->prepare('INSERT INTO mesures (id_capteur, id_meta, valeur) VALUES (:id_capteur, :id_meta, :mesure);');
+	$stmt_insertMetaMesures = $db->prepare('INSERT INTO meta_mesures (id_hub, date, gps_long, gps_lat) VALUES (:id_hub, :date, :gps_long, :gps_lat);');
+	$stmt_insertCapteurs = $db->prepare('INSERT INTO capteurs (id_hub, name, type) VALUES (:id_hub, :name, :type);');
 	$stmt_insertHubs = $db->prepare('INSERT INTO hubs (name) VALUES (:name);');
 
 	$stmt_readMesure = $db_read->prepare('SELECT m.id,m.id_capteur,m.id_meta,m.valeur,c.type FROM mesures m,capteurs c WHERE m.id_capteur = c.id;');
