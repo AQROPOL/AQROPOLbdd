@@ -5,7 +5,7 @@ require 'db_access.php';
 for ($i = 1; $i < 1000; $i++) {
      $aleaLat = rand(480200, 482000);
      $aleaLat = $aleaLat / 10000;
-     $aleaLong = rand(-144, -184);
+     $aleaLong = rand(-14400, -18400);
      $aleaLong = $aleaLong / 10000;
 
      //$date = new DateTime();
