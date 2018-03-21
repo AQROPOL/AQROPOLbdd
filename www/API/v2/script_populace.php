@@ -3,10 +3,10 @@
 require 'db_access.php';
 
 for ($i = 1; $i < 1000; $i++) {
-     $aleaLat = rand(4802, 4820);
-     $aleaLat = $aleaLat / 100;
+     $aleaLat = rand(480200, 482000);
+     $aleaLat = $aleaLat / 10000;
      $aleaLong = rand(-144, -184);
-     $aleaLong = $aleaLong / 100;
+     $aleaLong = $aleaLong / 10000;
 
      //$date = new DateTime();
      //$dateTmp = $date->getTimestamp();
