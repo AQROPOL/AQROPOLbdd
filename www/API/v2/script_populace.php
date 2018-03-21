@@ -8,7 +8,7 @@ for ($i = 1; $i < 1000; $i++) {
      $aleaLong = rand(-144, -184);
      $aleaLong = $aleaLong / 100;
 
-     $date = new DateTime()
+     $date = new DateTime();
      $dateTmp = $date->getTimestamp();
      $randIdHub = rand(1,2);
      $hash = hash('sha256', $dateTmp);
