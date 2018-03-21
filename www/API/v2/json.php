@@ -18,7 +18,7 @@
 					foreach($tabMesure as &$mesure){
 						$tab[$i]["type"]="Feature";
 						$tab[$i]["properties"]["name"]=$mesure['id'];
-						$tab[$i]["properties"]["value"]=$mesure['valeur'];
+						$tab[$i]["properties"]["value"]=intval($mesure['valeur']);
 						$tab[$i]["properties"]["date"]=$meta['date'];
 						$tab[$i]["geometry"]["type"]="Point";
 						$tmp = array();
