@@ -108,6 +108,7 @@
 				$queryOptions .= " mt.type = ".$_GET["type"];
 				$ajout = true;
 			}
+			$query .= $queryOptions . ";";
 			echo $query;
 			$db_read->exec($query);
 		}
