@@ -21,26 +21,26 @@
 					$infoMesure = array();
 					$infoMesure["type"] = "Feature";
 					$infoMesureProperties = array();
-					$infoMesureProperties["id_mesure"]	 = $uneMesure["id"];
+					$infoMesureProperties["id_mesure"]	= $uneMesure["id"];
 					$infoMesureProperties["id_capteur"] = $uneMesure["id_capteur"];
-					$infoMesureProperties["id_meta"] 	 = $uneMesure["id_meta"];
-					$infoMesureProperties["valeur"]	 = $uneMesure["valeur"];
+					$infoMesureProperties["id_meta"] 	= $uneMesure["id_meta"];
+					$infoMesureProperties["valeur"]	 	= $uneMesure["valeur"];
 					$infoMesureGeometry = array();
 					$infoMesureGeometry["type"] = "Point";
 					$infoMesureGeometryCoordinates = array();
 					foreach($tabMeta as &$uneMeta){
 						if($uneMesure['id_meta'] == $uneMeta['id']){
 							// Si on trouve la meta qui correspond a la mesure
-							$infoMesureProperties["date"]= $uneMeta["date"];
-							$infoMesureGeometryCoordinates[0] = $uneMeta["gps_long"];
-							$infoMesureGeometryCoordinates[1] = $uneMeta["gps_lat"];
+							$infoMesureProperties["date"]		= $uneMeta["date"];
+							$infoMesureGeometryCoordinates[0] 	= $uneMeta["gps_long"];
+							$infoMesureGeometryCoordinates[1] 	= $uneMeta["gps_lat"];
 							break;
 						}
 					}
 					foreach ($tabCapteur as &$unCapteur) {
 						if($uneMesure['id_capteur'] == $unCapteur['id']){
 							// Si on trouve le capteur qui correspond a la mesure
-							$infoMesureProperties["type"]= $unCapteur["type"];
+							$infoMesureProperties["type"] = $unCapteur["type"];
 							break;
 						}
 					}
@@ -110,7 +110,9 @@
 			}
 			$query .= $queryOptions . ";";
 			echo $query;
-			$db_read->exec($query);
+			$result = $db_read->query($query);
+			$donnees = $result->fetchAll(PDO::FETCH_ASSOC)
+			
 		}
 	}
 	// DECODING JSON
