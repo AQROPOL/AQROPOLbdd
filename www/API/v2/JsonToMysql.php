@@ -1,12 +1,16 @@
 <?php
-	require 'db_access.php';
-	
+//	require 'db_access.php';
+//Mon URL http://pilic27.irisa.fr/API/v2/JsonToMySql.php 	
+
 	header("Content-type: application/json");
 
+phpinfo();
+phpinfo(INFO_MODULES);
+/*
 	if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
-		$json_data = file_get_contents('data.json');
-
+		//$json_data = file_get_contents('data.json');
+if(!empty($_POST['XXX'])){
 		$data=json_decode($json_data,true);
 
 		$id_nuc=0;
@@ -55,7 +59,7 @@
 		$stmt_insertMesures->execute();
 	
 	}
-
+}
 	}
-
+*/
 ?>
