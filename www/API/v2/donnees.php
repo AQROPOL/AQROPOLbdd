@@ -113,7 +113,7 @@
 			$result = $db_read->prepare($query);
 			$result->execute();
 			$donnees = $result->fetchAll(PDO::FETCH_ASSOC);
-			
+			echo "-";
 			foreach($donnees as &$uneLigne)	{
 				echo "<br>1".$uneLigne["mt.id"];
 				echo "<br>2".$uneLigne["m.id"];
@@ -123,6 +123,7 @@
 				echo "<br>6".$uneLigne["capteurs.id"];
 				echo "<br>7".$uneLigne["id"];
 			}
+			echo "-";
 		}
 	}
 	// DECODING JSON
