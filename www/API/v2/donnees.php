@@ -3,57 +3,156 @@
 	header("Content-type: application/json");
 
 	// Encoding JSON
-	if ($_SERVER['REQUEST_METHOD'] === 'GET'){
-			$meta_mesures = array();
-			$stmt_readMesure->execute();
-			$tabMesure = $stmt_readMesure->fetchAll(PDO::FETCH_ASSOC);
-			$stmt_readMeta->execute();
-			$tabMeta = $stmt_readMeta->fetchAll(PDO::FETCH_ASSOC);
-			$stmt_readCapteur->execute();
-			$tabCapteur = $stmt_readCapteur->fetchAll(PDO::FETCH_ASSOC);
+	if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+		if ($_GET["query"] === 'all') {
+				$meta_mesures = array();
+				$stmt_readMesure->execute();
+				$tabMesure = $stmt_readMesure->fetchAll(PDO::FETCH_ASSOC);
+				$stmt_readMeta->execute();
+				$tabMeta = $stmt_readMeta->fetchAll(PDO::FETCH_ASSOC);
+				$stmt_readCapteur->execute();
+				$tabCapteur = $stmt_readCapteur->fetchAll(PDO::FETCH_ASSOC);
 
-			$tabMatchWebMapping = array();
-			$tabMatchWebMapping["type"] = "FeatureCollection";
-			$tabFeatures = array();
-			$i = 0;
-			foreach ($tabMesure as &$uneMesure) {
-				$infoMesure = array();
-				$infoMesure["type"] = "Feature";
-				$infoMesureProperties = array();
-				$infoMesureProperties["id_mesure"]	 = $uneMesure["id"];
-				$infoMesureProperties["id_capteur"] = $uneMesure["id_capteur"];
-				$infoMesureProperties["id_meta"] 	 = $uneMesure["id_meta"];
-				$infoMesureProperties["valeur"]	 = $uneMesure["valeur"];
-				$infoMesureGeometry = array();
-				$infoMesureGeometry["type"] = "Point";
-				$infoMesureGeometryCoordinates = array();
-				foreach($tabMeta as &$uneMeta){
-					if($uneMesure['id_meta'] == $uneMeta['id']){
-						// Si on trouve la meta qui correspond a la mesure
-						$infoMesureProperties["date"]= $uneMeta["date"];
-						$infoMesureGeometryCoordinates[0] = $uneMeta["gps_long"];
-						$infoMesureGeometryCoordinates[1] = $uneMeta["gps_lat"];
-						break;
+				$tabMatchWebMapping = array();
+				$tabMatchWebMapping["type"] = "FeatureCollection";
+				$tabFeatures = array();
+				$i = 0;
+				foreach ($tabMesure as &$uneMesure) {
+					$infoMesure = array();
+					$infoMesure["type"] = "Feature";
+					$infoMesureProperties = array();
+					$infoMesureProperties["id_mesure"]	 = $uneMesure["id"];
+					$infoMesureProperties["id_capteur"] = $uneMesure["id_capteur"];
+					$infoMesureProperties["id_meta"] 	 = $uneMesure["id_meta"];
+					$infoMesureProperties["valeur"]	 = $uneMesure["valeur"];
+					$infoMesureGeometry = array();
+					$infoMesureGeometry["type"] = "Point";
+					$infoMesureGeometryCoordinates = array();
+					foreach($tabMeta as &$uneMeta){
+						if($uneMesure['id_meta'] == $uneMeta['id']){
+							// Si on trouve la meta qui correspond a la mesure
+							$infoMesureProperties["date"]= $uneMeta["date"];
+							$infoMesureGeometryCoordinates[0] = $uneMeta["gps_long"];
+							$infoMesureGeometryCoordinates[1] = $uneMeta["gps_lat"];
+							break;
+						}
 					}
-				}
-				foreach ($tabCapteur as &$unCapteur) {
-					if($uneMesure['id_capteur'] == $unCapteur['id']){
-						// Si on trouve le capteur qui correspond a la mesure
-						$infoMesureProperties["type"]= $unCapteur["type"];
-						break;
+					foreach ($tabCapteur as &$unCapteur) {
+						if($uneMesure['id_capteur'] == $unCapteur['id']){
+							// Si on trouve le capteur qui correspond a la mesure
+							$infoMesureProperties["type"]= $unCapteur["type"];
+							break;
+						}
 					}
+					$infoMesure["properties"] = $infoMesureProperties;
+					$infoMesureGeometry["coordinates"] = $infoMesureGeometryCoordinates;
+					$infoMesure["geometry"] = $infoMesureGeometry;
+					$tabFeatures[$i] = $infoMesure;
+					$i++;
 				}
-				$infoMesure["properties"] = $infoMesureProperties;
-				$infoMesureGeometry["coordinates"] = $infoMesureGeometryCoordinates;
-				$infoMesure["geometry"] = $infoMesureGeometry;
-				$tabFeatures[$i] = $infoMesure;
-				$i++;
+				$tabMatchWebMapping["features"] = $tabFeatures;
+				echo json_encode($tabMatchWebMapping, JSON_NUMERIC_CHECK);
+		} else if ($_GET["query"] === 'filter') {
+			$query = "SELECT * FROM mesures m, meta_mesures mt, capteurs c WHERE";
+			$queryOptions;
+			$ajout = false;
+			if (isset($_GET["valavg"])) {
+				$query = "SELECT AVG(m.valeur) FROM mesures m, meta_mesures mt, capteurs c WHERE";
 			}
-			$tabMatchWebMapping["features"] = $tabFeatures;
-			echo json_encode($tabMatchWebMapping, JSON_NUMERIC_CHECK);
+			if (isset($_GET["id_mesure"])) {
+				if ($ajout) {
+					$queryOptions .= " AND";
+				}
+				$queryOptions .= " m.id =".$id_mesure;
+				$ajout = true;
+			}
+			if (isset($_GET["id_capteur"])) {
+				if ($ajout) {
+					$queryOptions .= " AND";
+				}
+				$queryOptions .= " c.id = ".$id_capteur;
+				$ajout = true;
+			}
+			if (isset($_GET["id_meta"])) {
+				if ($ajout) {
+					$queryOptions .= " AND";
+				}
+				$queryOptions .= " mt.id = ".$id_meta;
+				$ajout = true;
+			}
+			if (isset($_GET["valmin"])) {
+				if ($ajout) {
+					$queryOptions .= " AND";
+				}
+				$queryOptions .= " m.valeur >= ".$valmin;
+				$ajout = true;
+			}
+			if (isset($_GET["valmax"])) {
+				if ($ajout) {
+					$queryOptions .= " AND";
+				}
+				$queryOptions .= " m.valeur <= ".$valmax;
+				$ajout = true;
+			}
+			if (isset($_GET["date"])) {
+				if ($ajout) {
+					$queryOptions .= " AND";
+				}
+				$queryOptions .= " mt.date = ".$date;
+				$ajout = true;
+			}
+			if (isset($_GET["type"])) {
+				if ($ajout) {
+					$queryOptions .= " AND";
+				}
+				$queryOptions .= " mt.type = ".$type;
+				$ajout = true;
+			}
+			echo $query;
+			$db_read->exec($query);
+		}
 	}
 	// DECODING JSON
 	else if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/**/
 ?>
