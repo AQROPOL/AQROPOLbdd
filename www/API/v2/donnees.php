@@ -110,7 +110,7 @@
 			}
 			$query .= $queryOptions . ";";
 			echo $query;
-			$result = $dbh->prepare($query);
+			$result = $db_read->prepare($query);
 			$result->execute();
 			$donnees = $result->fetchAll(PDO::FETCH_ASSOC);
 			echo $donnees;
