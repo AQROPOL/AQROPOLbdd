@@ -111,7 +111,7 @@
 			$query .= $queryOptions . ";";
 			echo $query;
 			$result = $db_read->query($query);
-			$donnees = $result->fetchAll(PDO::FETCH_ASSOC)
+			$donnees = $result->fetchAll(PDO::FETCH_ASSOC);
 			
 		}
 	}
