@@ -1,6 +1,5 @@
 <?php
-echo("Test Reçu !");
-/*	require 'db_access.php';
+	require 'db_access.php';
 //Mon URL http://pilic27.irisa.fr/API/v2/JsonToMySql.php 	
 
 	header("Content-type: application/json");
@@ -9,7 +8,7 @@ echo("Test Reçu !");
 
 		//$json_data = file_get_contents('data.json');
 if(!empty($_POST['test'])){
-echo("Test Reçu !");
+echo("Test Recu !");
 		$data=json_decode($_POST['test'],true);
 
 		$id_nuc=0;
@@ -60,5 +59,5 @@ echo("Test Reçu !");
 	}
 }
 	}
-*/
+
 ?>
