@@ -110,8 +110,8 @@
 			}
 			$query .= $queryOptions . ";";
 			echo $query;
-			$result = $db_read->prepare($query);
-			echo $result->execute();
+			$db_read->prepare($query);
+			$result = $db_read->execute();
 			$donnees = $result->fetchAll(PDO::FETCH_ASSOC);
 			foreach($donnees as &$uneLigne)	{
 				echo "<br>1".$uneLigne["mt.id"];
