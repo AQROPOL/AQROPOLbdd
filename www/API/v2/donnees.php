@@ -63,49 +63,49 @@
 				if ($ajout) {
 					$queryOptions .= " AND";
 				}
-				$queryOptions .= " m.id =".$id_mesure;
+				$queryOptions .= " m.id =".$_GET["id_mesure"];
 				$ajout = true;
 			}
 			if (isset($_GET["id_capteur"])) {
 				if ($ajout) {
 					$queryOptions .= " AND";
 				}
-				$queryOptions .= " c.id = ".$id_capteur;
+				$queryOptions .= " c.id = ".$_GET["id_capteur"];
 				$ajout = true;
 			}
 			if (isset($_GET["id_meta"])) {
 				if ($ajout) {
 					$queryOptions .= " AND";
 				}
-				$queryOptions .= " mt.id = ".$id_meta;
+				$queryOptions .= " mt.id = ".$_GET["id_meta"];
 				$ajout = true;
 			}
 			if (isset($_GET["valmin"])) {
 				if ($ajout) {
 					$queryOptions .= " AND";
 				}
-				$queryOptions .= " m.valeur >= ".$valmin;
+				$queryOptions .= " m.valeur >= ".$_GET["valmin"];
 				$ajout = true;
 			}
 			if (isset($_GET["valmax"])) {
 				if ($ajout) {
 					$queryOptions .= " AND";
 				}
-				$queryOptions .= " m.valeur <= ".$valmax;
+				$queryOptions .= " m.valeur <= ".$_GET["valmax"];
 				$ajout = true;
 			}
 			if (isset($_GET["date"])) {
 				if ($ajout) {
 					$queryOptions .= " AND";
 				}
-				$queryOptions .= " mt.date = ".$date;
+				$queryOptions .= " mt.date = ".$_GET["date"];
 				$ajout = true;
 			}
 			if (isset($_GET["type"])) {
 				if ($ajout) {
 					$queryOptions .= " AND";
 				}
-				$queryOptions .= " mt.type = ".$type;
+				$queryOptions .= " mt.type = ".$_GET["type"];
 				$ajout = true;
 			}
 			echo $query;
