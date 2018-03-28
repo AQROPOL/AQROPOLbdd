@@ -8,6 +8,7 @@
 
 		//$json_data = file_get_contents('data.json');
 if(!empty($_POST['test'])){
+echo("Test Reçu !");
 		$data=json_decode($_POST['test'],true);
 
 		$id_nuc=0;
