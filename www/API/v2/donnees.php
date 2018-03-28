@@ -54,7 +54,7 @@
 				echo json_encode($tabMatchWebMapping, JSON_NUMERIC_CHECK);
 		} else if ($_GET["query"] === 'filter') {
 			$query = "SELECT * FROM mesures m, meta_mesures mt, capteurs c WHERE";
-			$queryOptions;
+			$queryOptions = "";
 			$ajout = false;
 			if (isset($_GET["valavg"])) {
 				$query = "SELECT AVG(m.valeur) FROM mesures m, meta_mesures mt, capteurs c WHERE";
