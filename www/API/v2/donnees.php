@@ -105,7 +105,7 @@
 				if ($ajout) {
 					$queryOptions .= " AND";
 				}
-				$queryOptions .= " mt.type = ".$_GET["type"];
+				$queryOptions .= " mt.type = '".$_GET["type"]. "'";
 				$ajout = true;
 			}
 			$query .= $queryOptions . ";";
