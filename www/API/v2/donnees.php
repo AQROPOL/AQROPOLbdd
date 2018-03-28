@@ -50,7 +50,7 @@
 				$i++;
 			}
 			$tabMatchWebMapping["features"] = $tabFeatures;
-			echo json_encode($tabMatchWebMapping);
+			echo json_encode($tabMatchWebMapping, JSON_NUMERIC_CHECK);
 	}
 	// DECODING JSON
 	else if ($_SERVER['REQUEST_METHOD'] === 'POST'){
