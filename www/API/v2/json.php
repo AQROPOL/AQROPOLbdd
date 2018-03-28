@@ -14,6 +14,7 @@
 				$tabMeta = $stmt_readMeta->fetchAll(PDO::FETCH_ASSOC);
 				$i = 0;
 				$tab = array();
+				$tmp = array();
 				foreach($tabMeta as &$meta){
 					foreach($tabMesure as &$mesure){
 						$tab[$i]["type"]="Feature";
@@ -21,7 +22,6 @@
 						$tab[$i]["properties"]["value"]=intval($mesure['valeur']);
 						$tab[$i]["properties"]["date"]=$meta['date'];
 						$tab[$i]["geometry"]["type"]="Point";
-						$tmp = array();
 						$tmp[0] = $meta['gps_long'];
 						$tmp[1] = $meta['gps_lat'];
 						$tab[$i]["geometry"]["coordinates"] = $tmp;
