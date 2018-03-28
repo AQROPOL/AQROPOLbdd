@@ -1,5 +1,6 @@
 <?php
-	require 'db_access.php';
+echo("Test Reçu !");
+/*	require 'db_access.php';
 //Mon URL http://pilic27.irisa.fr/API/v2/JsonToMySql.php 	
 
 	header("Content-type: application/json");
@@ -59,5 +60,5 @@ echo("Test Reçu !");
 	}
 }
 	}
-
+*/
 ?>
