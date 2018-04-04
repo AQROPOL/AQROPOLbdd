@@ -4,10 +4,10 @@
 
 	header("Content-type: application/json");
 echo "POST Request";
-	if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-
+	if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+echo("POST Recu !");
 		//$json_data = file_get_contents('data.json');
-if(!empty($_POST['test'])){
+//if(!empty($_POST['test'])){
 echo("Test Recu !");
 		$data=json_decode($_POST['test'],true);
 
@@ -61,7 +61,7 @@ echo("Test Recu !");
 		$stmt_insertMesures->execute();
 		echo "Insertion Mesures";
 
-	}
+	//}
 }
 	}
 
