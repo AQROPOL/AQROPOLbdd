@@ -108,7 +108,7 @@
 				$queryOptions .= " mt.type = '".$_GET["type"]. "'";
 				$ajout = true;
 			}
-			$query .= $queryOptions . ";";
+			$query .= $queryOptions . " AND m.id_meta = mt.id AND m.id_capteur = c.id;";
 			echo $query;
 			$stmt = $db_read->prepare($query);
 			$stmt->execute();
