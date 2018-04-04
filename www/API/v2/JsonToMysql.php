@@ -19,13 +19,16 @@ echo("Test Recu !\n");
 		$stmt_insertHubs -> execute();
 		echo ("Insertion Hubs\n");
 
-		while($row = $stmt_insertHubs->fetch(PDO::FETCH_ASSOC)){
+		$result = $stmt_insertHubs->fetch(PDO::FETCH_ASSOC); 
+	  $id_nuc = $result["id"];
+		echo "Recuperation Id nuc : \n".$id_nuc."\n";
+		/*while($row = $stmt_insertHubs->fetch(PDO::FETCH_ASSOC)){
 			print_r($row);
 			print("\n");
 			$id_nuc = $row["id"];
 			echo "Recuperation Id nuc : \n".$id_nuc."\n";
 		}
-
+*/
 		$mesures=$data["mesures"];
 		$max = sizeof($mesures);
 		echo ("taille des mesures : ".$max."\n");
