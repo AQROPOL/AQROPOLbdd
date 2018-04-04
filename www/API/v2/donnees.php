@@ -145,9 +145,7 @@
 				$i++;
 			}
 			$tabMatchWebMapping["features"] = $tabFeatures;
-			
-			
-			
+			echo json_encode($tabMatchWebMapping, JSON_NUMERIC_CHECK);
 			
 			/////////////////////////////////////////////////////
 						
