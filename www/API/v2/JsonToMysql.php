@@ -6,7 +6,7 @@
 echo "POST Request\n";
 	if ($_SERVER["REQUEST_METHOD"] == "POST"){
 echo("POST Recu !\n");
-		$json_data = file_get_contents("json_data.json");
+		$json_data = file_get_contents("json_data_test.json");
 //if(!empty($_POST["file"])){
 echo("Test Recu !\n");
 		$data=json_decode($json_data);
