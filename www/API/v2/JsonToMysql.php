@@ -19,7 +19,7 @@ echo("Test Recu !\n");
 		$stmt_insertHubs -> execute();
 		echo ("Insertion Hubs\n");
 
-		$row = $stmt_insertHubs->fetch(PDO::FETCH_ASSOC)
+		$row = $stmt_insertHubs->fetch(PDO::FETCH_ASSOC);
 		$id_nuc = $row["id"];
 		echo "Recuperation Id nuc : \n".$id_nuc."\n";
 
