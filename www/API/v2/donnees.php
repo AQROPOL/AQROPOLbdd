@@ -1,7 +1,6 @@
 <?php
 	require 'db_access.php';
 	header("Content-type: application/json");
-	ini_set("memory_limit","128M");
 
 	// Encoding JSON
 	if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -54,7 +53,7 @@
 				$tabMatchWebMapping["features"] = $tabFeatures;
 				echo json_encode($tabMatchWebMapping, JSON_NUMERIC_CHECK);
 		} else if ($_GET["query"] === 'filter') {
-			$query = "SELECT * FROM mesures m, meta_mesures mt, capteurs c WHERE";
+			$query = "SELECT m.id, m.id_capteur, m.id_meta, m.valeur, mt.date, mt.gps_lat, mt.gps_long, c.type FROM mesures m, meta_mesures mt, capteurs c WHERE";
 			$queryOptions = "";
 			$ajout = false;
 			if (isset($_GET["valavg"])) {
