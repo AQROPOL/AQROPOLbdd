@@ -46,7 +46,7 @@ echo("Test Recu !\n");
 		$stmt_insertMetaMesures ->bindParam(":id_hub",$id_nuc);
 		$stmt_insertMetaMesures ->bindParam(":date",$mesures[$i]["date"]);
 		$stmt_insertMetaMesures ->bindParam(":gps_lat",$mesures[$i]["lat"]);
-		$stmt_insertMetaMesures ->bindParam(":gps_long",$mesures[$$i]["long"]);
+		$stmt_insertMetaMesures ->bindParam(":gps_long",$mesures[$i]["long"]);
 		$stmt_insertMetaMesures ->bindParam(":hash",$mesures[$i]["hash"]);
 		$stmt_insertMetaMesures -> execute();
 		echo "Insertion Meta Mesures\n";
