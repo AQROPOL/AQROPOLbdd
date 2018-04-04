@@ -109,7 +109,7 @@
 				$ajout = true;
 			}
 			$query .= $queryOptions . ";";
-			echo $query;
+			//echo $query;
 			$stmt = $db_read->prepare($query);
 			$stmt->execute();
 			$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
