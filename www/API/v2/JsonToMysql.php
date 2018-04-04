@@ -3,7 +3,7 @@
 //Mon URL http://pilic27.irisa.fr/API/v2/JsonToMySql.php
 
 	header("Content-type: application/json");
-
+echo "POST Request";
 	if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
 		//$json_data = file_get_contents('data.json');
