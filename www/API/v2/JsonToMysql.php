@@ -6,10 +6,10 @@
 echo "POST Request\n";
 	if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 echo("POST Recu !\n");
-		//$json_data = file_get_contents('data.json');
-if(!empty($_POST['file'])){
+		$json_data = file_get_contents('json_data.json');
+//if(!empty($_POST['file'])){
 echo("Test Recu !\n");
-		$data=json_decode($_POST['file'],true);
+		$data=json_decode($json_data ,true);
 
 		$id_nuc=0;
 		$id_capteur=0;
@@ -61,7 +61,7 @@ echo("Test Recu !\n");
 		$stmt_insertMesures->execute();
 		echo "Insertion Mesures\n";
 
-	}
+	//}
 }
 	}
 
