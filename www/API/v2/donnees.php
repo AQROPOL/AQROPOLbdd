@@ -4,7 +4,7 @@
 
 	// Encoding JSON
 	if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-		if ($_GET["query"] === 'all' || !isset($_GET["query"]) {
+		if ($_GET["query"] === 'all' || !isset($_GET["query"])) {
 				
 			/* Gestion de la requete qui recupere toutes les infos de chaque mesure de la DB
 			 * et l'affiche sous format JSON pour que le WebMapping puisse l'utiliser. */
