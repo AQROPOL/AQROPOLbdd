@@ -3,13 +3,13 @@
 //Mon URL http://pilic27.irisa.fr/API/v2/JsonToMySql.php
 
 	header("Content-type: application/json");
-echo "POST Request";
+echo "POST Request\n";
 	if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-echo("POST Recu !");
+echo("POST Recu !\n");
 		//$json_data = file_get_contents('data.json');
-//if(!empty($_POST['test'])){
-echo("Test Recu !");
-		$data=json_decode($_POST['test'],true);
+if(!empty($_POST['file'])){
+echo("Test Recu !\n");
+		$data=json_decode($_POST['file'],true);
 
 		$id_nuc=0;
 		$id_capteur=0;
@@ -17,11 +17,11 @@ echo("Test Recu !");
 		$nuc = $data[nuc];
 		$stmt_insertHubs -> bindParam(':name',$nuc);
 		$stmt_insertHubs -> execute();
-		echo ("Insertion Hubs");
+		echo ("Insertion Hubs\n");
 
 	while ($row = $stmt_insertHubs->fetch(PDO::FETCH_ASSOC)) {
 		$id_nuc = $row['id'];
-		echo "Recuperation Id nuc";
+		echo "Recuperation Id nuc\n";
 		}
 
 		$mesures=$data["mesures"];
@@ -34,7 +34,7 @@ echo("Test Recu !");
 		$stmt_insertCapteurs -> bindParam(':name',$mesures[i]["capteur"]);
 		$stmt_insertCapteurs -> bindParam(':type',$mesures[i]["type"]);
 		$stmt_insertCapteurs -> execute();
-		echo "Insertion capteurs";
+		echo "Insertion capteurs\n";
 
 	while ($row = $stmt_insertCapteurs ->fetch(PDO::FETCH_ASSOC)) {
 		$id_capteur = $row['id'];
@@ -46,7 +46,7 @@ echo("Test Recu !");
 		$stmt_insertMetaMesures ->bindParam(':gps_long',$mesures[i]["long"]);
 		$stmt_insertMetaMesures ->bindParam(':hash',$mesures[i]["hash"]);
 		$stmt_insertMetaMesures -> execute();
-		echo "Insertion Meta Mesures";
+		echo "Insertion Meta Mesures\n";
 
 	 while ($row = $stmt_insertMetaMesures ->fetch(PDO::FETCH_ASSOC)) {
 		$id_meta = $row['id'];
@@ -59,9 +59,9 @@ echo("Test Recu !");
 		$stmt_insertMesures->bindParam(':id_meta',$id_meta);
 		$stmt_insertMesures->bindParam(':valeur',$mesures[i]["valeur"]);
 		$stmt_insertMesures->execute();
-		echo "Insertion Mesures";
+		echo "Insertion Mesures\n";
 
-	//}
+	}
 }
 	}
 
