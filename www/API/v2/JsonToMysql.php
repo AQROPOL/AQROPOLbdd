@@ -9,7 +9,7 @@ echo("POST Recu !\n");
 		$json_data = file_get_contents("json_data_test.json");
 //if(!empty($_POST["file"])){
 echo("Test Recu !\n");
-		$data=json_decode($json_data);
+		$data=json_decode($json_data,true);
 
 		$id_nuc=0;
 		$id_capteur=0;
