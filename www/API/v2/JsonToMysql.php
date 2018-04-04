@@ -14,7 +14,7 @@ echo("Test Recu !\n");
 		$id_nuc=0;
 		$id_capteur=0;
 		$id_meta=0;
-		$nuc = $data[nuc];
+		$nuc = $data["nuc"];
 		$stmt_insertHubs -> bindParam(':name',$nuc);
 		$stmt_insertHubs -> execute();
 		echo ("Insertion Hubs\n");
