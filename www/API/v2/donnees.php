@@ -4,7 +4,7 @@
 
 	// Encoding JSON
 	if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-		if ($_GET["query"] === 'all') {
+		if ($_GET["query"] === 'all' || !isset($_GET["query"]) {
 				
 			/* Gestion de la requete qui recupere toutes les infos de chaque mesure de la DB
 			 * et l'affiche sous format JSON pour que le WebMapping puisse l'utiliser. */
@@ -66,6 +66,19 @@
 		} else if ($_GET["query"] === 'filter') {
 		
 			/* Gestion d'une requete avec des arguments pour filtrer les donnees */
+		
+			foreach($_GET as $key => $value) {
+				if($key != "valavg" && 
+				$key != "id_mesure" && 
+				$key != "id_capteur" && 
+				$key != "id_meta" && 
+				$key != "valmin" && 
+				$key != "valmax" && 
+				$key != "date" && 
+				$key != "type") {
+					trigger_error("Parametre de filtre non supporte : ".$key, E_USER_ERROR);
+				}
+			}
 		
 			$query = "SELECT m.id, m.id_capteur, m.id_meta, m.valeur, mt.date, mt.gps_lat, mt.gps_long, c.type FROM mesures m, meta_mesures mt, capteurs c WHERE";
 			/* $queryOptions va venir se concatener a la fin de $query, dependemment des
