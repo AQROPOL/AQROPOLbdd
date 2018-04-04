@@ -32,8 +32,8 @@ echo("Test Recu !\n");
 	for ($i = 0; $i < $max; $i++) {
 
 		$stmt_insertCapteurs -> bindParam(":id_hub",$id_nuc);
-		$stmt_insertCapteurs -> bindParam(":name",$mesures[i]["capteur"]);
-		$stmt_insertCapteurs -> bindParam(":type",$mesures[i]["type"]);
+		$stmt_insertCapteurs -> bindParam(":name",$mesures[$i]["capteur"]);
+		$stmt_insertCapteurs -> bindParam(":type",$mesures[$i]["type"]);
 		$stmt_insertCapteurs -> execute();
 		echo "Insertion capteurs\n";
 
@@ -44,10 +44,10 @@ echo("Test Recu !\n");
 
 
 		$stmt_insertMetaMesures ->bindParam(":id_hub",$id_nuc);
-		$stmt_insertMetaMesures ->bindParam(":date",$mesures[i]["date"]);
-		$stmt_insertMetaMesures ->bindParam(":gps_lat",$mesures[i]["lat"]);
-		$stmt_insertMetaMesures ->bindParam(":gps_long",$mesures[i]["long"]);
-		$stmt_insertMetaMesures ->bindParam(":hash",$mesures[i]["hash"]);
+		$stmt_insertMetaMesures ->bindParam(":date",$mesures[$i]["date"]);
+		$stmt_insertMetaMesures ->bindParam(":gps_lat",$mesures[$i]["lat"]);
+		$stmt_insertMetaMesures ->bindParam(":gps_long",$mesures[$$i]["long"]);
+		$stmt_insertMetaMesures ->bindParam(":hash",$mesures[$i]["hash"]);
 		$stmt_insertMetaMesures -> execute();
 		echo "Insertion Meta Mesures\n";
 
@@ -61,7 +61,7 @@ echo("Test Recu !\n");
 
 		$stmt_insertMesures->bindParam(":id_capteur",$id_capteur);
 		$stmt_insertMesures->bindParam(":id_meta",$id_meta);
-		$stmt_insertMesures->bindParam(":valeur",$mesures[i]["valeur"]);
+		$stmt_insertMesures->bindParam(":valeur",$mesures[$i]["valeur"]);
 		$stmt_insertMesures->execute();
 		echo "Insertion Mesures\n";
 
