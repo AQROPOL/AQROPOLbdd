@@ -109,7 +109,7 @@
 				$ajout = true;
 			}
 			$query .= $queryOptions . " AND m.id_meta = mt.id AND m.id_capteur = c.id;";
-			//echo $query;
+			echo $query;
 			$stmt = $db_read->prepare($query);
 			$stmt->execute();
 			$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
