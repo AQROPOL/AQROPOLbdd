@@ -112,7 +112,7 @@
 			$query .= $queryOptions . ";";
 			//echo $query;
 			$stmt = $db_read->prepare($query);
-			$stmt->execute()->fetchAll(PDO::FETCH_ASSOC);
+			$stmt->execute();
 			$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 			foreach($result as &$uneLigne)	{
 				echo "<br>1".$uneLigne["mt.id"];
