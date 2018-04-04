@@ -21,7 +21,7 @@ echo("Test Recu !\n");
 
 		$row = $stmt_insertHubs->fetch(PDO::FETCH_ASSOC);
 		print($row);
-		print("\n")
+		print("\n");
 		$id_nuc = $row["id"];
 		echo "Recuperation Id nuc : \n".$id_nuc."\n";
 
