@@ -1,6 +1,7 @@
 <?php
 	require 'db_access.php';
 	header("Content-type: application/json");
+	ini_set("memory_limit","128M");
 
 	// Encoding JSON
 	if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -111,7 +112,7 @@
 			$query .= $queryOptions . ";";
 			//echo $query;
 			$stmt = $db_read->prepare($query);
-			$stmt->execute();
+			$stmt->execute()->fetchAll(PDO::FETCH_ASSOC);
 			$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 			foreach($result as &$uneLigne)	{
 				echo "<br>1".$uneLigne["mt.id"];
