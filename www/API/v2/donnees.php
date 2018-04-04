@@ -5,6 +5,7 @@
 	// Encoding JSON
 	if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 		if ($_GET["query"] === 'all') {
+				$meta_mesures = array();
 				$stmt_readMesure->execute();
 				$tabMesure = $stmt_readMesure->fetchAll(PDO::FETCH_ASSOC);
 				$stmt_readMeta->execute();
@@ -133,7 +134,6 @@
 				$infoMesureGeometry 				= array();
 				$infoMesureGeometry["type"] 		= "Point";
 				$infoMesureGeometryCoordinates 		= array();
-				// Si on trouve la meta qui correspond a la mesure
 				$infoMesureProperties["date"]		= $uneLigne["date"];
 				$infoMesureGeometryCoordinates[0] 	= $uneLigne["gps_long"];
 				$infoMesureGeometryCoordinates[1] 	= $uneLigne["gps_lat"];
@@ -154,46 +154,12 @@
 		}
 	}
 	// DECODING JSON
-	else if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+	else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	/**/
 ?>
+	
+	
+	
+	
+
