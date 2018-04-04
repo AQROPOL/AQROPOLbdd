@@ -5,7 +5,6 @@
 	// Encoding JSON
 	if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 		if ($_GET["query"] === 'all') {
-				$meta_mesures = array();
 				$stmt_readMesure->execute();
 				$tabMesure = $stmt_readMesure->fetchAll(PDO::FETCH_ASSOC);
 				$stmt_readMeta->execute();
@@ -113,15 +112,45 @@
 			$stmt = $db_read->prepare($query);
 			$stmt->execute();
 			$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-			foreach($result as &$uneLigne)	{
-				echo "<br>1".$uneLigne["mt.id"];
-				echo "<br>2".$uneLigne["m.id"];
-				echo "<br>3".$uneLigne["c.id"];
-				echo "<br>4".$uneLigne["meta_mesures.id"];
-				echo "<br>5".$uneLigne["mesures.id"];
-				echo "<br>6".$uneLigne["capteurs.id"];
-				echo "<br>7".$uneLigne["id"];
+			////////////////////////////////////////////////////////////////////////////////
+			
+			
+			// id  | id_capteur | id_meta | valeur | date | gps_lat | gps_long | type
+			
+			
+			$tabMatchWebMapping 					= array();
+			$tabMatchWebMapping["type"] 			= "FeatureCollection";
+			$tabFeatures 							= array();
+			$i = 0;
+			foreach ($result as &$uneLigne) {
+				$infoMesure 						= array();
+				$infoMesure["type"] 				= "Feature";
+				$infoMesureProperties 				= array();
+				$infoMesureProperties["id_mesure"]	= $uneLigne["id"];
+				$infoMesureProperties["id_capteur"] = $uneLigne["id_capteur"];
+				$infoMesureProperties["id_meta"] 	= $uneLigne["id_meta"];
+				$infoMesureProperties["valeur"]	 	= $uneLigne["valeur"];
+				$infoMesureGeometry 				= array();
+				$infoMesureGeometry["type"] 		= "Point";
+				$infoMesureGeometryCoordinates 		= array();
+				// Si on trouve la meta qui correspond a la mesure
+				$infoMesureProperties["date"]		= $uneLigne["date"];
+				$infoMesureGeometryCoordinates[0] 	= $uneLigne["gps_long"];
+				$infoMesureGeometryCoordinates[1] 	= $uneLigne["gps_lat"];
+				$infoMesureProperties["type"] 		= $uneLigne["type"];
+				$infoMesure["properties"] 			= $infoMesureProperties;
+				$infoMesureGeometry["coordinates"] 	= $infoMesureGeometryCoordinates;
+				$infoMesure["geometry"] 			= $infoMesureGeometry;
+				$tabFeatures[$i] 					= $infoMesure;
+				$i++;
 			}
+			$tabMatchWebMapping["features"] = $tabFeatures;
+			
+			
+			
+			
+			/////////////////////////////////////////////////////
+						
 		}
 	}
 	// DECODING JSON
