@@ -11,15 +11,17 @@ echo("POST Recu !\n");
 echo("Test Recu !\n");
 		$data=json_decode($json_data,true);
 
-		$id_nuc=0;
-		$id_capteur=0;
-		$id_meta=0;
+		$id_nuc;
+		$id_capteur;
+		$id_meta;
 		$nuc = $data["nuc"];
 		$stmt_insertHubs -> bindParam(":name",$nuc);
 		$stmt_insertHubs -> execute();
 		echo ("Insertion Hubs\n");
 
 		$row = $stmt_insertHubs->fetch(PDO::FETCH_ASSOC);
+		print($row);
+		print("\n")
 		$id_nuc = $row["id"];
 		echo "Recuperation Id nuc : \n".$id_nuc."\n";
 
