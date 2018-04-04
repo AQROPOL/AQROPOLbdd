@@ -21,12 +21,12 @@ echo("Test Recu !\n");
 
 	while ($row = $stmt_insertHubs->fetch(PDO::FETCH_ASSOC)) {
 		$id_nuc = $row["id"];
-		echo "Recuperation Id nuc : \n".$id_nuc;
+		echo "Recuperation Id nuc : \n".$id_nuc."\n";
 		}
 
 		$mesures=$data["mesures"];
 		$max = sizeof($mesures);
-		echo ("taille des mesures : ".$max);
+		echo ("taille des mesures : ".$max."\n");
 
 
 	for ($i = 0; $i < $max; $i++) {
@@ -39,7 +39,7 @@ echo("Test Recu !\n");
 
 	while ($row = $stmt_insertCapteurs ->fetch(PDO::FETCH_ASSOC)) {
 		$id_capteur = $row["id"];
-		echo "Recuperation Id capteur : \n".$id_capteur;
+		echo "Recuperation Id capteur : \n".$id_capteur."\n";
 		}
 
 
@@ -53,7 +53,7 @@ echo("Test Recu !\n");
 
 	 while ($row = $stmt_insertMetaMesures ->fetch(PDO::FETCH_ASSOC)) {
 		$id_meta = $row["id"];
-			echo "Recuperation Id meta : \n".$id_meta;
+			echo "Recuperation Id meta : \n".$id_meta."\n";
 
 		}
 
