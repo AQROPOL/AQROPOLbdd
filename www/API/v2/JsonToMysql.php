@@ -18,6 +18,9 @@ echo("Test Recu !\n");
 		$stmt_insertHubs -> bindParam(":name",$nuc);
 		$stmt_insertHubs -> execute();
 		//echo ("Insertion Hubs\n");
+ 		$lastId = $db->lastInsertId();
+		print($lastId);
+
 
 		$result = $stmt_insertHubs->fetch();
 	  $id_nuc = $result[0];
