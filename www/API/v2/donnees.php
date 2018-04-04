@@ -67,8 +67,11 @@
 		
 			/* Gestion d'une requete avec des arguments pour filtrer les donnees */
 		
+			$err = "Parametre de filtre non supporte : ";
+			$show_err = false;
 			foreach($_GET as $key => $value) {
-				if($key != "valavg" && 
+				if($key != "query" && 
+				$key != "valavg" && 
 				$key != "id_mesure" && 
 				$key != "id_capteur" && 
 				$key != "id_meta" && 
@@ -76,9 +79,15 @@
 				$key != "valmax" && 
 				$key != "date" && 
 				$key != "type") {
-					trigger_error("Parametre de filtre non supporte : ".$key, E_USER_ERROR);
+					$show_err = true;
+					$err .= $key . " ";
 				}
 			}
+			if ($show_err) {
+				trigger_error($err, E_USER_ERROR);
+				exit(1);
+			}
+
 		
 			$query = "SELECT m.id, m.id_capteur, m.id_meta, m.valeur, mt.date, mt.gps_lat, mt.gps_long, c.type FROM mesures m, meta_mesures mt, capteurs c WHERE";
 			/* $queryOptions va venir se concatener a la fin de $query, dependemment des
