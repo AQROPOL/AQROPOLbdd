@@ -18,17 +18,19 @@ echo("Test Recu !\n");
 		$stmt_insertHubs -> bindParam(":name",$nuc);
 		$stmt_insertHubs -> execute();
 		//echo ("Insertion Hubs\n");
- 		$lastId = $db->lastInsertId();
-		print($lastId);
+ 		//$lastId = $db->lastInsertId();
+		//print($lastId);
+		$last_id = $stmt_insertHubs >fetchAll('SELECT LAST_INSERT_ID() as last_id');
 
-
-		$result = $stmt_insertHubs->fetch();
+		$last_id = intval($last_id[0]['last_id']);
+		print($last_id);
+		/*$result = $stmt_insertHubs->fetch();
 	  $id_nuc = $result[0];
 		echo "Recuperation Id nuc : \n".$id_nuc."\n";
 		print($id_nuc);
 		echo "Recuperation \n";
 		print($result[0]);
-		/*while($row = $stmt_insertHubs->fetch(PDO::FETCH_ASSOC)){
+		while($row = $stmt_insertHubs->fetch(PDO::FETCH_ASSOC)){
 			print_r($row);
 			print("\n");
 			$id_nuc = $row["id"];
