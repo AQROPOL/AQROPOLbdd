@@ -20,7 +20,7 @@ echo("Test Recu !\n");
 		//echo ("Insertion Hubs\n");
  		//$lastId = $db->lastInsertId();
 		//print($lastId);
-		$last_id = $stmt_insertHubs >fetchAll('SELECT LAST_INSERT_ID() as last_id');
+		$last_id = $stmt_insertHubs >PDOStatement::fetchAll('SELECT LAST_INSERT_ID() as last_id');
 
 		$last_id = intval($last_id[0]['last_id']);
 		print($last_id);
