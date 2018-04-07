@@ -26,6 +26,9 @@ echo("Test Recu !\n");
 		//print($last_id);
 		$sth = $db->prepare('SELECT Max(id) as "max" FROM hubs');
 		$sth->execute();
+		$result = $sth->fetchColumn();
+		print("Id = $result\n");
+/*
 			print" sth 1 \n";
 		//print $sth["max"];
 		print" sth 2 \n";
@@ -35,6 +38,7 @@ echo("Test Recu !\n");
 		print($res);
 		print" Res 2 \n";
 		print $res["max"];
+		*/
 		/*
 		$id_nuc = $db->exec("SELECT Max(id) FROM hubs");
 		echo "Recuperation1 \n";
