@@ -24,7 +24,18 @@ echo("Test Recu !\n");
 
 	//	$last_id = intval($last_id[0]['last_id']);
 		//print($last_id);
-		$sql =  'SELECT Max(id) as "max" FROM hubs';
+		$sth = $db->prepare('SELECT Max(id) as "max" FROM hubs');
+		$sth->execute();
+			print" sth 1 \n";
+		print $sth["max"];
+		print" sth 2 \n";
+		print($sth);
+		$res = $db->query('SELECT Max(id) as "max" FROM hubs');
+		print" Res 1 \n";
+		print($res);
+		print" Res 2 \n";
+		print $res["max"];
+		/*
 		$id_nuc = $db->exec("SELECT Max(id) FROM hubs");
 		echo "Recuperation1 \n";
 		print($id_nuc);
@@ -46,7 +57,7 @@ echo("Test Recu !\n");
 			//$id_nuc = $row["id"];
 			//echo "Recuperation Id nuc : \n".$id_nuc."\n";
 	//	}
-
+*/
 		$mesures=$data["mesures"];
 		$max = sizeof($mesures);
 		echo ("taille des mesures : ".$max."\n");
