@@ -24,44 +24,12 @@ echo("Test Recu !\n");
 
 	//	$last_id = intval($last_id[0]['last_id']);
 		//print($last_id);
-		$sth = $db->prepare('SELECT Max(id) as "max" FROM hubs');
-		$sth->execute();
-		$result = $sth->fetchColumn();
-		print("Id = $result\n");
-/*
-			print" sth 1 \n";
-		//print $sth["max"];
-		print" sth 2 \n";
-		print($sth);
-		$res = $db->query('SELECT Max(id) as "max" FROM hubs');
-		print" Res 1 \n";
-		print($res);
-		print" Res 2 \n";
-		print $res["max"];
-		*/
-		/*
-		$id_nuc = $db->exec("SELECT Max(id) FROM hubs");
-		echo "Recuperation1 \n";
-		print($id_nuc);
+		$hub = $db->prepare('SELECT Max(id) as "max" FROM hubs');
+		$hub->execute();
+		$result = $hub->fetchColumn();
+		$id_nuc=$result;
+		print("Id nuc = $result et $id_nuc\n");
 
-		foreach  ($db->exec($sql) as $row) {
-			echo "Recuperation2 \n";
-			 print $row['max'] . "\t";
-		 }
-
-//		$result = $stmt_insertHubs->fetch();
-	  //$id_nuc = $result[0];
-		//echo "Recuperation Id nuc : \n".$id_nuc."\n";
-
-		//echo "Recuperation \n";
-		//print($result[0]);
-		//while($row = $stmt_insertHubs->fetch(PDO::FETCH_ASSOC)){
-			//print_r($row);
-			//print("\n");
-			//$id_nuc = $row["id"];
-			//echo "Recuperation Id nuc : \n".$id_nuc."\n";
-	//	}
-*/
 		$mesures=$data["mesures"];
 		$max = sizeof($mesures);
 		echo ("taille des mesures : ".$max."\n");
@@ -74,13 +42,18 @@ echo("Test Recu !\n");
 		$stmt_insertCapteurs -> bindParam(":type",$mesures[$i]["type"]);
 		$stmt_insertCapteurs -> execute();
 		echo "Insertion capteurs\n";
-
+		$capt = $db->prepare('SELECT Max(id) as "max" FROM capteurs');
+		$capt->execute();
+		$result_capt = $capt->fetchColumn();
+		$id_capteur = $result_capt;
+		print("Id capteur = $id_capteur\n");
+/*
 	while ($row = $stmt_insertCapteurs ->fetch(PDO::FETCH_ASSOC)) {
 		$id_capteur = $row["id"];
 		echo "Recuperation Id capteur : \n".$id_capteur."\n";
 		}
 
-
+*/
 		$stmt_insertMetaMesures ->bindParam(":id_hub",$id_nuc);
 		$stmt_insertMetaMesures ->bindParam(":date",$mesures[$i]["date"]);
 		$stmt_insertMetaMesures ->bindParam(":gps_lat",$mesures[$i]["lat"]);
@@ -88,13 +61,18 @@ echo("Test Recu !\n");
 		$stmt_insertMetaMesures ->bindParam(":hash",$mesures[$i]["hash"]);
 		$stmt_insertMetaMesures -> execute();
 		echo "Insertion Meta Mesures\n";
-
+		$meta = $db->prepare('SELECT Max(id) as "max" FROM meta_mesures');
+		$meta->execute();
+		$result_meta = $meta->fetchColumn();
+		$id_meta = $result_meta;
+		print("Id Meta = $id_meta\n");
+/*
 	 while ($row = $stmt_insertMetaMesures ->fetch(PDO::FETCH_ASSOC)) {
 		$id_meta = $row["id"];
 			echo "Recuperation Id meta : \n".$id_meta."\n";
 
 		}
-
+*/
 
 
 		$stmt_insertMesures->bindParam(":id_capteur",$id_capteur);
