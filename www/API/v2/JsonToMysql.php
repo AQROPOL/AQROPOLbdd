@@ -27,7 +27,7 @@ echo("Test Recu !\n");
 		$sth = $db->prepare('SELECT Max(id) as "max" FROM hubs');
 		$sth->execute();
 			print" sth 1 \n";
-		print $sth["max"];
+		//print $sth["max"];
 		print" sth 2 \n";
 		print($sth);
 		$res = $db->query('SELECT Max(id) as "max" FROM hubs');
