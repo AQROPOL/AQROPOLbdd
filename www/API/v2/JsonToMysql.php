@@ -20,11 +20,11 @@ echo("Test Recu !\n");
 		//echo ("Insertion Hubs\n");
  		//$lastId = $db->lastInsertId();
 		//print($lastId);
-		$last_id = $stmt_insertHubs >PDOStatement::fetchAll('SELECT LAST_INSERT_ID() as last_id');
+		//$last_id = $stmt_insertHubs >PDOStatement::fetchAll('SELECT LAST_INSERT_ID() as last_id');
 
-		$last_id = intval($last_id[0]['last_id']);
-		print($last_id);
-		/*$result = $stmt_insertHubs->fetch();
+	//	$last_id = intval($last_id[0]['last_id']);
+		//print($last_id);
+		$result = $stmt_insertHubs->fetch();
 	  $id_nuc = $result[0];
 		echo "Recuperation Id nuc : \n".$id_nuc."\n";
 		print($id_nuc);
@@ -36,7 +36,7 @@ echo("Test Recu !\n");
 			$id_nuc = $row["id"];
 			echo "Recuperation Id nuc : \n".$id_nuc."\n";
 		}
-*/
+
 		$mesures=$data["mesures"];
 		$max = sizeof($mesures);
 		echo ("taille des mesures : ".$max."\n");
