@@ -29,7 +29,7 @@ echo("Test Recu !\n");
 		echo "Recuperation1 \n";
 		print($id_nuc);
 
-		foreach  ($db->query($sql) as $row) {
+		foreach  ($db->exec($sql) as $row) {
 			echo "Recuperation2 \n";
 			 print $row['max'] . "\t";
 		 }
