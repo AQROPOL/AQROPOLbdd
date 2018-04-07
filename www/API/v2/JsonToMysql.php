@@ -17,16 +17,14 @@ echo("Test Recu !\n");
 		$nuc = $data["nuc"];
 		$stmt_insertHubs -> bindParam(":name",$nuc);
 		$stmt_insertHubs -> execute();
-		//echo ("Insertion Hubs\n");
- 		//$lastId = $db->lastInsertId();
-		//print($lastId);
-		//$last_id = $stmt_insertHubs >PDOStatement::fetchAll('SELECT LAST_INSERT_ID() as last_id');
-
-	//	$last_id = intval($last_id[0]['last_id']);
-		//print($last_id);
+/*
 		$hub = $db->prepare('SELECT Max(id) as "max" FROM hubs');
 		$hub->execute();
 		$result = $hub->fetchColumn();
+		$id_nuc=$result;
+		print("Id nuc = $result et $id_nuc\n");
+*/
+		$result = $stmt_insertHubs->fetchColumn();
 		$id_nuc=$result;
 		print("Id nuc = $result et $id_nuc\n");
 
@@ -42,18 +40,17 @@ echo("Test Recu !\n");
 		$stmt_insertCapteurs -> bindParam(":type",$mesures[$i]["type"]);
 		$stmt_insertCapteurs -> execute();
 		echo "Insertion capteurs\n";
+		/*
 		$capt = $db->prepare('SELECT Max(id) as "max" FROM capteurs');
 		$capt->execute();
 		$result_capt = $capt->fetchColumn();
 		$id_capteur = $result_capt;
 		print("Id capteur = $id_capteur\n");
-/*
-	while ($row = $stmt_insertCapteurs ->fetch(PDO::FETCH_ASSOC)) {
-		$id_capteur = $row["id"];
-		echo "Recuperation Id capteur : \n".$id_capteur."\n";
-		}
+		*/
+		$result_capt =$stmt_insertCapteurs->fetchColumn();
+		$id_capteur = $result_capt;
+		print("Id capteur = $id_capteur\n");
 
-*/
 		$stmt_insertMetaMesures ->bindParam(":id_hub",$id_nuc);
 		$stmt_insertMetaMesures ->bindParam(":date",$mesures[$i]["date"]);
 		$stmt_insertMetaMesures ->bindParam(":gps_lat",$mesures[$i]["lat"]);
@@ -61,18 +58,15 @@ echo("Test Recu !\n");
 		$stmt_insertMetaMesures ->bindParam(":hash",$mesures[$i]["hash"]);
 		$stmt_insertMetaMesures -> execute();
 		echo "Insertion Meta Mesures\n";
-		$meta = $db->prepare('SELECT Max(id) as "max" FROM meta_mesures');
+		/*$meta = $db->prepare('SELECT Max(id) as "max" FROM meta_mesures');
 		$meta->execute();
 		$result_meta = $meta->fetchColumn();
 		$id_meta = $result_meta;
 		print("Id Meta = $id_meta\n");
-/*
-	 while ($row = $stmt_insertMetaMesures ->fetch(PDO::FETCH_ASSOC)) {
-		$id_meta = $row["id"];
-			echo "Recuperation Id meta : \n".$id_meta."\n";
-
-		}
-*/
+		*/
+		$result_meta = $stmt_insertMetaMesures->fetchColumn();
+		$id_meta = $result_meta;
+		print("Id Meta = $id_meta\n");
 
 
 		$stmt_insertMesures->bindParam(":id_capteur",$id_capteur);
