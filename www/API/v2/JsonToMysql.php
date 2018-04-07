@@ -24,18 +24,21 @@ echo("Test Recu !\n");
 
 	//	$last_id = intval($last_id[0]['last_id']);
 		//print($last_id);
-		$result = $stmt_insertHubs->fetch();
-	  $id_nuc = $result[0];
+		$sql =  'SELECT Max(id) FROM hubs';
+		$id_nuc = $db->exec("SELECT Max(id) FROM hubs;");
+
+//		$result = $stmt_insertHubs->fetch();
+	  //$id_nuc = $result[0];
 		echo "Recuperation Id nuc : \n".$id_nuc."\n";
-		print($id_nuc);
+	//	print($id_nuc);
 		echo "Recuperation \n";
-		print($result[0]);
-		while($row = $stmt_insertHubs->fetch(PDO::FETCH_ASSOC)){
-			print_r($row);
-			print("\n");
-			$id_nuc = $row["id"];
-			echo "Recuperation Id nuc : \n".$id_nuc."\n";
-		}
+		//print($result[0]);
+		//while($row = $stmt_insertHubs->fetch(PDO::FETCH_ASSOC)){
+			//print_r($row);
+			//print("\n");
+			//$id_nuc = $row["id"];
+			//echo "Recuperation Id nuc : \n".$id_nuc."\n";
+	//	}
 
 		$mesures=$data["mesures"];
 		$max = sizeof($mesures);
