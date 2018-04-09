@@ -7,10 +7,11 @@ echo "POST Request\n";
 	if ($_SERVER["REQUEST_METHOD"] == "POST"){
 echo("POST Recu !\n");
 	//	$json_data = file_get_contents("json_data_test.json");
-	$json_data = file_get_contents($_POST["file"]);
-if(!empty($_POST["file"])){
+	//$json_data = file_get_contents($_POST["file"]);
+//if(!empty($_POST["file"])){
 		echo("Test Recu !\n");
-		$data=json_decode($json_data,true);
+		//$data=json_decode($json_data,true);
+		$data=json_decode($_POST["file"],true);
 		$id_nuc;
 		$id_capteur;
 		$id_meta;
@@ -63,10 +64,10 @@ if(!empty($_POST["file"])){
 
 
 		}
-	}
+	/*}
 	else {
 		echo " POST File Empty !";
-		}
+	}*/
 }
 else {
 	echo "POST Error";
