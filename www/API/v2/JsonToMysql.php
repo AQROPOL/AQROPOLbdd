@@ -36,8 +36,8 @@ echo("Test Recu !\n");
 		$stmt_insertCapteurs -> bindParam(":type",$mesures[$i]["type"]);
 		$stmt_insertCapteurs -> execute();
 		// Recuperer Id Capteur
-		//$capt = $db->prepare('SELECT Max(id) as "max" FROM capteurs');
-		$capt = $db->prepare('SELECT id FROM capteurs where name ='.$mesures[$i]["capteur"].' and type='.$mesures[$i]["type"]);
+		$capt = $db->prepare('SELECT Max(id) as "max" FROM capteurs');
+	//	$capt = $db->prepare('SELECT id FROM capteurs where name ='.$mesures[$i]["capteur"].' and type='.$mesures[$i]["type"]);
 		$capt->execute();
 		$id_capteur = $capt->fetchColumn();
 		print("Id capteur = $id_capteur\n");
