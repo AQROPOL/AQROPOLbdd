@@ -6,20 +6,21 @@
 echo "POST Request\n";
 	if ($_SERVER["REQUEST_METHOD"] == "POST"){
 echo("POST Recu !\n");
-	//	$json_data = file_get_contents("json_data_test.json");
-	$json_data = file_get_contents($_POST["file"]);
-if(!empty($_POST["file"])){
+		$json_data = file_get_contents("json_data_test.json");
+	//$json_data = file_get_contents($_POST["file"]);
+//if(!empty($_POST["file"])){
 echo("Test Recu !\n");
 		$data=json_decode($json_data,true);
 		$id_nuc;
 		$id_capteur;
 		$id_meta;
-		$nuc = $data["nuc"];
+		$nuc = mysql_real_escape_string($data["nuc"]);
 		//Insertion Hubs
 		$stmt_insertHubs -> bindParam(":name",$nuc);
 		$stmt_insertHubs -> execute();
 		// Recuperer Id nuc
-		$hub = $db->prepare('SELECT Max(id) as "max" FROM hubs');
+		//$hub = $db->prepare('SELECT Max(id) as "max" FROM hubs');
+		$hub = $db->prepare('SELECT id FROM hubs where name = '.$nuc);
 		$hub->execute();
 		$id_nuc = $hub->fetchColumn();
 		print("Id nuc = $id_nuc\n");
@@ -35,7 +36,8 @@ echo("Test Recu !\n");
 		$stmt_insertCapteurs -> bindParam(":type",$mesures[$i]["type"]);
 		$stmt_insertCapteurs -> execute();
 		// Recuperer Id Capteur
-		$capt = $db->prepare('SELECT Max(id) as "max" FROM capteurs');
+		//$capt = $db->prepare('SELECT Max(id) as "max" FROM capteurs');
+		$capt = $db->prepare('SELECT id FROM capteurs where name ='.$mesures[$i]["capteur"].' and type='.$mesures[$i]["type"]);
 		$capt->execute();
 		$id_capteur = $capt->fetchColumn();
 		print("Id capteur = $id_capteur\n");
@@ -59,7 +61,7 @@ echo("Test Recu !\n");
 		$stmt_insertMesures->execute();
 
 
-	}
+	//}
 }
 	}
 
