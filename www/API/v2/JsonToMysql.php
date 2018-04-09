@@ -6,21 +6,16 @@
 echo "POST Request\n";
 	if ($_SERVER["REQUEST_METHOD"] == "POST"){
 echo("POST Recu !\n");
-		$json_data = file_get_contents("json_data_test.json");
-	//$json_data = file_get_contents($_POST["file"]);
-//if(!empty($_POST["file"])){
-echo("Test Recu !\n");
+	//	$json_data = file_get_contents("json_data_test.json");
+	$json_data = file_get_contents($_POST["file"]);
+if(!empty($_POST["file"])){
+		echo("Test Recu !\n");
 		$data=json_decode($json_data,true);
-		$size_deco=sizeof($data);
-		echo ("taille de deco : ".$size_deco."\n");
 		$id_nuc;
 		$id_capteur;
 		$id_meta;
-		$size_data=sizeof($json_data);
-		echo ("taille de data : ".$size_data."\n");
 		// PARCOURIR Tout le fichier
 		$nuc = $data["nuc"];
-
 		//Insertion Hubs
 		$stmt_insertHubs -> bindParam(":name",$nuc);
 		$stmt_insertHubs -> execute();
@@ -67,7 +62,10 @@ echo("Test Recu !\n");
 		$stmt_insertMesures->execute();
 
 
-	//}
+	}
+}
+else {
+	echo " POST File Empty !";
 }
 	}
 
