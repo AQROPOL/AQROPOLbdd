@@ -14,7 +14,7 @@ echo("Test Recu !\n");
 		$id_nuc;
 		$id_capteur;
 		$id_meta;
-		$nuc = mysql_real_escape_string($data["nuc"]);
+		$nuc = $data["nuc"];
 		//Insertion Hubs
 		$stmt_insertHubs -> bindParam(":name",$nuc);
 		$stmt_insertHubs -> execute();
