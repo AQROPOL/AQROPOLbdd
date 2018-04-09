@@ -11,10 +11,16 @@ echo("POST Recu !\n");
 //if(!empty($_POST["file"])){
 echo("Test Recu !\n");
 		$data=json_decode($json_data,true);
+		$size_deco=sizeof($data);
+		echo ("taille de deco : ".$size_deco."\n");
 		$id_nuc;
 		$id_capteur;
 		$id_meta;
+		$size_data=sizeof($json_data);
+		echo ("taille de data : ".$size_data."\n");
+		// PARCOURIR Tout le fichier
 		$nuc = $data["nuc"];
+
 		//Insertion Hubs
 		$stmt_insertHubs -> bindParam(":name",$nuc);
 		$stmt_insertHubs -> execute();
