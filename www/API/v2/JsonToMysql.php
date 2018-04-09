@@ -62,11 +62,14 @@ if(!empty($_POST["file"])){
 		$stmt_insertMesures->execute();
 
 
+		}
 	}
+	else {
+		echo " POST File Empty !";
+		}
 }
 else {
-	echo " POST File Empty !";
+	echo "POST Error";
 }
-	}
 
 ?>
