@@ -1,11 +1,20 @@
 {
-    "nuc" : 30,
+    "nuc" : 50,
     "dateenvoie" : "/Date(1420192000000)/",
     "mesures" : [
-        {"capteur":"capteurAir4","type":"pm30", "unite":"Q/m3", "valeur":2.3, "date":"/Date(1320192000000)/", "lat":48.1151495, "long":-1.74707547, "hash":"00000000000000000000000000000001"},
-        {"capteur":"capteurAir4","type":"pm50", "unite":"Q/m3", "valeur":50, "date":"/Date(1320192000000)/", "lat":48.1151495, "long":-1.74707547, "hash":"00000000000000000000000000000005"},
-        {"capteur":"capteurAir5", "type":"pm35", "unite":"Q/m3", "valeur":3.7, "date":"/Date(1320192000000)/", "lat":48.1251495, "long":-1.74807547, "hash":"00000000000000000000000000000002"},
-        {"capteur":"capteurAir6", "type":"pm40", "unite":"Q/m3", "valeur":4.2, "date":"/Date(1320192000000)/", "lat":48.1351495, "long":-1.74907547, "hash":"00000000000000000000000000000003"}
+        {"capteur":"capteurAir7","type":"pm30", "unite":"Q/m3", "valeur":2.3, "date":"/Date(1320192000000)/", "lat":48.1151495, "long":-1.74707547, "hash":"00000000000000000000000000000001"},
+        {"capteur":"capteurAir8","type":"pm50", "unite":"Q/m3", "valeur":50, "date":"/Date(1320192000000)/", "lat":48.1151495, "long":-1.74707547, "hash":"00000000000000000000000000000005"},
+        {"capteur":"capteurAir9", "type":"pm35", "unite":"Q/m3", "valeur":3.7, "date":"/Date(1320192000000)/", "lat":48.1251495, "long":-1.74807547, "hash":"00000000000000000000000000000002"},
+        {"capteur":"capteurAir10", "type":"pm40", "unite":"Q/m3", "valeur":4.2, "date":"/Date(1320192000000)/", "lat":48.1351495, "long":-1.74907547, "hash":"00000000000000000000000000000003"}
+    ],
+
+    "nuc" : 51,
+    "dateenvoie" : "/Date(1420192000000)/",
+    "mesures" : [
+        {"capteur":"capteurAir11","type":"pm30", "unite":"Q/m3", "valeur":2.3, "date":"/Date(1320192000000)/", "lat":48.1151495, "long":-1.74707547, "hash":"00000000000000000000000000000001"},
+        {"capteur":"capteurAir12","type":"pm50", "unite":"Q/m3", "valeur":50, "date":"/Date(1320192000000)/", "lat":48.1151495, "long":-1.74707547, "hash":"00000000000000000000000000000005"},
+        {"capteur":"capteurAir13", "type":"pm35", "unite":"Q/m3", "valeur":3.7, "date":"/Date(1320192000000)/", "lat":48.1251495, "long":-1.74807547, "hash":"00000000000000000000000000000002"},
+        {"capteur":"capteurAir14", "type":"pm40", "unite":"Q/m3", "valeur":4.2, "date":"/Date(1320192000000)/", "lat":48.1351495, "long":-1.74907547, "hash":"00000000000000000000000000000003"}
     ]
 
 }
