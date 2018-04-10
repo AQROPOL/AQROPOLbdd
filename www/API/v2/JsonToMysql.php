@@ -72,9 +72,11 @@
 				//$id_meta = $meta->fetchColumn();
 				$tabHash = $hash_capt->fetchAll();
 				$tabCapt_Hash = array();
+				$i=0;
 				foreach ($tabHash as &$ligneHash) {
-					$tabCapt_Hash['id_capt']=$ligneHash['id'];
-					$tabCapt_Hash['hash']=$ligneHash['hash'];
+					$tabCapt_Hash[$i]['id_capt']=$ligneHash['id'];
+					$tabCapt_Hash[$i]['hash']=$ligneHash['hash'];
+					$i++;
 			}
 				echo json_encode($tabCapt_Hash, JSON_NUMERIC_CHECK);
 		}
