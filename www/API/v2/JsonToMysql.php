@@ -77,5 +77,5 @@
 			}
 				echo json_encode($tabCapt_Hash, JSON_NUMERIC_CHECK);
 		}
-
+}
 ?>
