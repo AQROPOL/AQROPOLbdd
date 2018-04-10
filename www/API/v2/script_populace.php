@@ -11,7 +11,7 @@ for ($i = 1; $i < 1000; $i++) {
      $aleaLong = rand(-14400, -18400);
      $aleaLong = $aleaLong / 10000;
 
-     $date = date("Y-m-d");
+     $date = date("Y-m-d H:i:s");
      $randIdHub = rand(1,2);
      $hash = hash('sha256', $randIdHub.$date.$aleaLat.$aleaLong);
      $bool = $stmt_insertMetaMesures->execute(array(':id_hub' => $randIdHub, ':date' => $date, ':gps_long' => $aleaLong, ':gps_lat' => $aleaLat, ":hash" => $hash));
