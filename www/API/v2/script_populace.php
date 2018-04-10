@@ -13,8 +13,8 @@ for ($i = 1; $i < 1000; $i++) {
 
      $date = date("Y-m-d H:i:s");
      $randIdHub = rand(1,2);
-     $hash = hash('sha256', $dateTmp);
-     $bool = $stmt_insertMetaMesures->execute(array(':id_hub' => $randIdHub, ':date' => $dateTmp, ':gps_long' => $aleaLong, ':gps_lat' => $aleaLat, ":hash" => $hash));
+     $hash = hash('sha256', $date);
+     $bool = $stmt_insertMetaMesures->execute(array(':id_hub' => $randIdHub, ':date' => $date, ':gps_long' => $aleaLong, ':gps_lat' => $aleaLat, ":hash" => $hash));
 
      $randIdCapteur = rand(1,4);
      $randValeur = rand(0,10000);
