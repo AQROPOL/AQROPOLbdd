@@ -1,8 +1,9 @@
 <?php
 	require "db_access.php";
 	header("Content-type: application/json");
-	echo "POST Request\n";
+
 	if ($_SERVER["REQUEST_METHOD"] == "POST"){
+			echo "POST Request\n";
 			echo("POST Recu !\n");
 			if(!empty($_POST["file"])){
 				echo("Test Recu !\n");
@@ -69,7 +70,7 @@
 																		and meta_mesures.id = mesures.id_meta');
 				$hash_capt->execute();
 				//$id_meta = $meta->fetchColumn();
-				$tabHash = $hash_capt->fetchAll(PDO::FETCH_ASSOC);
+				$tabHash = $hash_capt->fetchAll();
 				$tabCapt_Hash = array();
 				foreach ($tabHash as &$ligneHash) {
 					$tabCapt_Hash['id_capt']=$ligneHash['id'];
