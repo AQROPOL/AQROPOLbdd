@@ -141,21 +141,21 @@
 				if ($ajout) {
 					$queryOptions .= " AND";
 				}
-				$queryOptions .= " YEAR(mt.date) = ".$_GET["date"];
+				$queryOptions .= " YEAR(mt.date) = ".$_GET["year"];
 				$ajout = true;
 			}
 			if (isset($_GET["month"])) {
 				if ($ajout) {
 					$queryOptions .= " AND";
 				}
-				$queryOptions .= " MONTH(mt.date) = ".$_GET["date"];
+				$queryOptions .= " MONTH(mt.date) = ".$_GET["month"];
 				$ajout = true;
 			}
 			if (isset($_GET["day"])) {
 				if ($ajout) {
 					$queryOptions .= " AND";
 				}
-				$queryOptions .= " DAY(mt.date) = ".$_GET["date"];
+				$queryOptions .= " DAY(mt.date) = ".$_GET["day"];
 				$ajout = true;
 			}
 			if (isset($_GET["type"])) {
