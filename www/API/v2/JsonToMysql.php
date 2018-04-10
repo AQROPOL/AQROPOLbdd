@@ -64,10 +64,11 @@
 		else {
 			if ($_SERVER["REQUEST_METHOD"] == "GET"){
 				echo "GET Request \n";
-				$hash_capt = $db->prepare('SELECT capteurs.id, meta_mesures.hash
-																		FROM capteurs,meta_mesures,mesures
-																		where capteurs.id = mesures.id_capteur
-																		and meta_mesures.id = mesures.id_meta');
+				$hash_capt = $db->prepare('SELECT capteurs.id,meta_mesures.hash,Max(date)
+																	from meta_mesures, capteurs, mesures
+																	where capteurs.id = mesures.id_capteur
+																	and meta_mesures.id=mesures.id_meta
+																	group by capteurs.id');
 				$hash_capt->execute();
 				//$id_meta = $meta->fetchColumn();
 				$tabHash = $hash_capt->fetchAll();
