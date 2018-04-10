@@ -79,6 +79,7 @@
 				$key != "id_meta" &&
 				$key != "valmin" &&
 				$key != "valmax" &&
+				$key != "date" &&
 				$key != "year" &&
 				$key != "month" &&
 				$key != "day" &&
@@ -135,6 +136,14 @@
 					$queryOptions .= " AND";
 				}
 				$queryOptions .= " m.valeur <= ".$_GET["valmax"];
+				$ajout = true;
+			}
+			if (isset($_GET["date"])) {
+				if ($ajout) {
+					$queryOptions .= " AND";
+				}
+				list($month, $day, $year) = split('[/.-]', $_GET["date"]);
+				$queryOptions .= " YEAR(mt.date) = ".$_GET["year"] . "AND MONTH(mt.date) = ".$_GET["month"] . " AND DAY(mt.date) = ".$_GET["day"] ;
 				$ajout = true;
 			}
 			if (isset($_GET["year"])) {
