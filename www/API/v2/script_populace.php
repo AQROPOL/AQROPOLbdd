@@ -11,11 +11,11 @@ for ($i = 1; $i < 1000; $i++) {
      $aleaLong = rand(-14400, -18400);
      $aleaLong = $aleaLong / 10000;
 
-     $dateTmp = round(microtime(true) * 1000);
+     $date = date("Y-m-d H:i:s");
      $randIdHub = rand(1,2);
      $hash = hash('sha256', $dateTmp);
      $bool = $stmt_insertMetaMesures->execute(array(':id_hub' => $randIdHub, ':date' => $dateTmp, ':gps_long' => $aleaLong, ':gps_lat' => $aleaLat, ":hash" => $hash));
-     
+
      $randIdCapteur = rand(1,4);
      $randValeur = rand(0,10000);
 
