@@ -61,7 +61,21 @@
 				}
 		}
 		else {
-			echo "POST Error";
+			if ($_SERVER["REQUEST_METHOD"] == "GET"){
+				echo "GET Request \n";
+				$hash_capt = $db->prepare('SELECT capteurs.id, meta_mesures.hash
+																		FROM capteurs,meta_mesures,mesures
+																		where capteurs.id = mesures.id_capteur
+																		and meta_mesures.id = mesures.id_meta');
+				$hash_capt->execute();
+				//$id_meta = $meta->fetchColumn();
+				$tabHash = $hash_capt->fetchAll(PDO::FETCH_ASSOC);
+				$tabCapt_Hash = array();
+				foreach ($tabHash as &$ligneHash) {
+					$tabCapt_Hash['id_capt']=$ligneHash['id'];
+					$tabCapt_Hash['hash']=$ligneHash['hash'];
+			}
+				echo json_encode($tabCapt_Hash, JSON_NUMERIC_CHECK);
 		}
 
 ?>
