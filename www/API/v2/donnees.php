@@ -5,10 +5,10 @@
 	// Encoding JSON
 	if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 		if ($_GET["query"] === 'all' || !isset($_GET["query"])) {
-				
+
 			/* Gestion de la requete qui recupere toutes les infos de chaque mesure de la DB
 			 * et l'affiche sous format JSON pour que le WebMapping puisse l'utiliser. */
-			
+
 			/* Executions de requetes SQL preparees dans db_access.php */
 			$stmt_readMesure->execute(); /* Contient toutes les mesures */
 			$tabMesure = $stmt_readMesure->fetchAll(PDO::FETCH_ASSOC);
@@ -64,22 +64,24 @@
 			 * ne pas avoir de guillemets autour des valeurs de type Int */
 			echo json_encode($tabMatchWebMapping, JSON_NUMERIC_CHECK);
 		} else if ($_GET["query"] === 'filter') {
-		
+
 			/* Gestion d'une requete avec des arguments pour filtrer les donnees */
-		
-		
+
+
 			/* Gestion d'erreurs liees aux parametres fournis */
 			$err = "Parametre de filtre non supporte : ";
 			$show_err = false;
 			foreach($_GET as $key => $value) {
-				if($key != "query" && 
-				$key != "valavg" && 
-				$key != "id_mesure" && 
-				$key != "id_capteur" && 
-				$key != "id_meta" && 
-				$key != "valmin" && 
-				$key != "valmax" && 
-				$key != "date" && 
+				if($key != "query" &&
+				$key != "valavg" &&
+				$key != "id_mesure" &&
+				$key != "id_capteur" &&
+				$key != "id_meta" &&
+				$key != "valmin" &&
+				$key != "valmax" &&
+				$key != "year" &&
+				$key != "month" &&
+				$key != "day" &&
 				$key != "type") {
 					$show_err = true;
 					$err .= $key . " ";
@@ -90,7 +92,7 @@
 				exit(1);
 			}
 
-		
+
 			$query = "SELECT m.id, m.id_capteur, m.id_meta, m.valeur, mt.date, mt.gps_lat, mt.gps_long, c.type FROM mesures m, meta_mesures mt, capteurs c WHERE";
 			/* $queryOptions va venir se concatener a la fin de $query, dependemment des
 			 *  arguments fournis */
@@ -135,11 +137,25 @@
 				$queryOptions .= " m.valeur <= ".$_GET["valmax"];
 				$ajout = true;
 			}
-			if (isset($_GET["date"])) {
+			if (isset($_GET["year"])) {
 				if ($ajout) {
 					$queryOptions .= " AND";
 				}
-				$queryOptions .= " mt.date = ".$_GET["date"];
+				$queryOptions .= " YEAR(mt.date) = ".$_GET["date"];
+				$ajout = true;
+			}
+			if (isset($_GET["month"])) {
+				if ($ajout) {
+					$queryOptions .= " AND";
+				}
+				$queryOptions .= " MONTH(mt.date) = ".$_GET["date"];
+				$ajout = true;
+			}
+			if (isset($_GET["day"])) {
+				if ($ajout) {
+					$queryOptions .= " AND";
+				}
+				$queryOptions .= " DAY(mt.date) = ".$_GET["date"];
 				$ajout = true;
 			}
 			if (isset($_GET["type"])) {
@@ -155,7 +171,7 @@
 			$stmt = $db_read->prepare($query);
 			$stmt->execute();
 			$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-			
+
 			/* Formattage JSON pour la meme finalite qu'en haut */
 			$tabMatchWebMapping 					= array();
 			$tabMatchWebMapping["type"] 			= "FeatureCollection";
@@ -189,8 +205,3 @@
 		}
 	}
 ?>
-	
-	
-	
-	
-
