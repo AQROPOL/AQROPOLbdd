@@ -142,8 +142,8 @@
 				if ($ajout) {
 					$queryOptions .= " AND";
 				}
-				list($month, $day, $year) = split('[/.-]', $_GET["date"]);
-				$queryOptions .= " YEAR(mt.date) = ".$_GET["year"] . "AND MONTH(mt.date) = ".$_GET["month"] . " AND DAY(mt.date) = ".$_GET["day"] ;
+				list($year, $month, $day) = split('[/.-]', $_GET["date"]);
+				$queryOptions .= " YEAR(mt.date) = ".$year. "AND MONTH(mt.date) = ".$month. " AND DAY(mt.date) = ".$day ;
 				$ajout = true;
 			}
 			if (isset($_GET["year"])) {
