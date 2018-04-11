@@ -74,7 +74,7 @@
 				$tabCapt_Hash = array();
 				$i=0;
 				foreach ($tabHash as &$ligneHash) {
-					$tabCapt_Hash[$i]['id_capt']=$ligneHash['id'];
+					$tabCapt_Hash[$i]['id_hub']=$ligneHash['id'];
 					$tabCapt_Hash[$i]['hash']=$ligneHash['hash'];
 					$i++;
 					}
