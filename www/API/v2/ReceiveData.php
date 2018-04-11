@@ -64,11 +64,11 @@
 		else {
 			if ($_SERVER["REQUEST_METHOD"] == "GET"){
 				// Encode Json Dernier Hash/Capt
-				$hash_capt = $db->prepare('SELECT capteurs.id,meta_mesures.hash,Max(date)
-																	from meta_mesures, capteurs, mesures
-																	where capteurs.id = mesures.id_capteur
+				$hash_capt = $db->prepare('SELECT hubs.id,meta_mesures.hash,Max(date)
+																	from meta_mesures, hubs, mesures
+																	where hubs.id = meta_mesures.id_hub
 																	and meta_mesures.id=mesures.id_meta
-																	group by capteurs.id');
+																	group by hubs.id');
 				$hash_capt->execute();
 				$tabHash = $hash_capt->fetchAll();
 				$tabCapt_Hash = array();
