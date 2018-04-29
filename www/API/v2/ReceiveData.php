@@ -3,6 +3,10 @@
 	header("Content-type: application/json");
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST"){
+		/* Gestion de la requete d'insertion des donnees venant d'Android
+		 * Parser la variable du POST
+		 * Utilisation du format JSON  
+		*/
 		if (isset($_POST["file"])) {
 			if(!empty($_POST["file"])){
 				//Decode Json Android
@@ -62,19 +66,21 @@
 
 		}
 		else {
+			/* Recuperation des derniers hash ainsi que leurs Id et les envoye vers Android
+			*/
 			if ($_SERVER["REQUEST_METHOD"] == "GET"){
 				// Encode Json Dernier Hash/Capt
-				$hash_capt = $db->prepare('SELECT capteurs.id,meta_mesures.hash,Max(date)
-																	from meta_mesures, capteurs, mesures
-																	where capteurs.id = mesures.id_capteur
+				$hash_capt = $db->prepare('SELECT hubs.id,meta_mesures.hash,Max(date)
+																	from meta_mesures, hubs, mesures
+																	where hubs.id = meta_mesures.id_hub
 																	and meta_mesures.id=mesures.id_meta
-																	group by capteurs.id');
+																	group by hubs.id');
 				$hash_capt->execute();
 				$tabHash = $hash_capt->fetchAll();
 				$tabCapt_Hash = array();
 				$i=0;
 				foreach ($tabHash as &$ligneHash) {
-					$tabCapt_Hash[$i]['id_capt']=$ligneHash['id'];
+					$tabCapt_Hash[$i]['id_hub']=$ligneHash['id'];
 					$tabCapt_Hash[$i]['hash']=$ligneHash['hash'];
 					$i++;
 					}
