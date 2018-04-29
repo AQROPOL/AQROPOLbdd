@@ -3,6 +3,10 @@
 	header("Content-type: application/json");
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST"){
+		/* Gestion de la requete d'insertion des donnees venant d'Android
+		 * Parser la variable du POST
+		 * Utilisation du format JSON  
+		*/
 		if (isset($_POST["file"])) {
 			if(!empty($_POST["file"])){
 				//Decode Json Android
@@ -62,6 +66,8 @@
 
 		}
 		else {
+			/* Recuperation des derniers hash ainsi que leurs Id et les envoye vers Android
+			*/
 			if ($_SERVER["REQUEST_METHOD"] == "GET"){
 				// Encode Json Dernier Hash/Capt
 				$hash_capt = $db->prepare('SELECT hubs.id,meta_mesures.hash,Max(date)
