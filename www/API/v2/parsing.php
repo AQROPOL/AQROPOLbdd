@@ -45,8 +45,9 @@
 					$stmt_insertMetaMesures ->bindParam(":id_hub",$id_nuc);
 					$stmt_insertMetaMesures ->bindParam(":date",$mesures[$i]["timestamp"]);
 					// Information non requise actuellement
-					$stmt_insertMetaMesures ->bindParam(":gps_lat",0);
-					$stmt_insertMetaMesures ->bindParam(":gps_long",0);
+					$c=0;
+					$stmt_insertMetaMesures ->bindParam(":gps_lat",$c);
+					$stmt_insertMetaMesures ->bindParam(":gps_long",$c);
 					$stmt_insertMetaMesures ->bindParam(":hash",$mesures[$i]["hash"]);
 					$stmt_insertMetaMesures -> execute();
 
