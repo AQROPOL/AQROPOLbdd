@@ -29,7 +29,7 @@
 					$hub = $db->prepare('SELECT id FROM hubs where name = '.$nuc);
 					$hub->execute();
 					$id_nuc = $hub->fetchColumn();
-					echo("\nNuc: .$id_nuc.\n");
+					echo("\n Nuc : ".$id_nuc);
 					//Insertion capteurs
 					$stmt_insertCapteurs -> bindParam(":id_hub",$id_nuc);
 					$stmt_insertCapteurs -> bindParam(":name",$mesures[$i]["sensor"]["name"]);
@@ -40,7 +40,7 @@
 					$capt = $db->prepare('SELECT Max(id) as "max" FROM capteurs');
 					$capt->execute();
 					$id_capteur = $capt->fetchColumn();
-					echo("\nCapteur: .$id_nuc.\n");
+					echo("\n Capteur: ".$id_capteur);
 
 					//Insertion Meta Mesures
 					$stmt_insertMetaMesures ->bindParam(":id_hub",$id_nuc);
@@ -56,7 +56,7 @@
 					$meta = $db->prepare('SELECT Max(id) as "max" FROM meta_mesures');
 					$meta->execute();
 					$id_meta = $meta->fetchColumn();
-					echo("\nMeta : .$id_nuc.\n");
+					echo("\n Meta : ".$id_meta);
 
 					//Insertion Mesures
 					$stmt_insertMesures->bindParam(":id_capteur",$id_capteur);
