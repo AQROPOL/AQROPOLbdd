@@ -11,7 +11,7 @@
         "type" : "pm10",
         "unity" : "ug/m3"
       },
-      "value" : "5020",
+      "value" : "5555",
       "id" : 7,
       "_links" : {
         "self" : {
@@ -43,7 +43,7 @@
         "type" : "pm10",
         "unity" : "ug/m3"
       },
-      "value" : "5030",
+      "value" : "6666",
       "id" : 1,
       "_links" : {
         "self" : {
