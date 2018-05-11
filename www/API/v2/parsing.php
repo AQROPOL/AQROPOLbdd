@@ -22,6 +22,7 @@
 
 					//Insertion Hubs
 					$nuc = $mesures[$i]["nuc"]["token"];
+					echo "Nuc Name ".$nuc;
 					$stmt_insertHubs -> bindParam(":name",$nuc);
 					$stmt_insertHubs -> execute();
 
@@ -30,6 +31,7 @@
 					$hub->execute();
 					$id_nuc = $hub->fetchColumn();
 					echo("\n Nuc : ".$id_nuc);
+
 					//Insertion capteurs
 					$stmt_insertCapteurs -> bindParam(":id_hub",$id_nuc);
 					$stmt_insertCapteurs -> bindParam(":name",$mesures[$i]["sensor"]["name"]);

@@ -39,7 +39,7 @@
       },
       "sensor" : {
         "id" : 3,
-        "name" : "SDS011",
+        "name" : "SDS012",
         "type" : "pm10",
         "unity" : "ug/m3"
       },
