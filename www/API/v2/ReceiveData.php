@@ -5,33 +5,35 @@
 	if ($_SERVER["REQUEST_METHOD"] == "POST"){
 		/* Gestion de la requete d'insertion des donnees venant d'Android
 		 * Parser la variable du POST
-		 * Utilisation du format JSON  
+		 * Utilisation du format JSON
 		*/
 		if (isset($_POST["file"])) {
-			if(!empty($_POST["file"])){
+			if(!empty($json_source)){
 				//Decode Json Android
 				$data=json_decode($_POST["file"],true);
 				$id_nuc;
 				$id_capteur;
 				$id_meta;
-				$nuc = $data["nuc"];
-				//Insertion Hubs
-				$stmt_insertHubs -> bindParam(":name",$nuc);
-				$stmt_insertHubs -> execute();
-				// Recuperer Id nuc
-				$hub = $db->prepare('SELECT id FROM hubs where name = '.$nuc);
-				$hub->execute();
-				$id_nuc = $hub->fetchColumn();
-				print("Id nuc = $id_nuc\n");
-				//Tableau de Mesures
-				$mesures=$data["mesures"];
-				$max = sizeof($mesures);
+					//Tableau de Mesures
+				$mesures=$data["measures"];
+				$Size_Mesures = sizeof($mesures);
 
-				//Insertion capteurs
-				for ($i = 0; $i < $max; $i++) {
+				for ($i = 0; $i < $Size_Mesures; $i++) {
+
+					//Insertion Hubs
+					$nuc = $mesures[$i]["nuc"]["token"];
+					$stmt_insertHubs -> bindParam(":name",$nuc);
+					$stmt_insertHubs -> execute();
+
+					// Recuperer Id nuc
+					$hub = $db->prepare('SELECT id FROM hubs where name = "'.$nuc.'"');
+					$hub->execute();
+					$id_nuc = $hub->fetchColumn();
+
+					//Insertion capteurs
 					$stmt_insertCapteurs -> bindParam(":id_hub",$id_nuc);
-					$stmt_insertCapteurs -> bindParam(":name",$mesures[$i]["capteur"]);
-					$stmt_insertCapteurs -> bindParam(":type",$mesures[$i]["type"]);
+					$stmt_insertCapteurs -> bindParam(":name",$mesures[$i]["sensor"]["name"]);
+					$stmt_insertCapteurs -> bindParam(":type",$mesures[$i]["sensor"]["type"]);
 					$stmt_insertCapteurs -> execute();
 
 					// Recuperer Id Capteur
@@ -41,9 +43,11 @@
 
 					//Insertion Meta Mesures
 					$stmt_insertMetaMesures ->bindParam(":id_hub",$id_nuc);
-					$stmt_insertMetaMesures ->bindParam(":date",$mesures[$i]["date"]);
-					$stmt_insertMetaMesures ->bindParam(":gps_lat",$mesures[$i]["lat"]);
-					$stmt_insertMetaMesures ->bindParam(":gps_long",$mesures[$i]["long"]);
+					$stmt_insertMetaMesures ->bindParam(":date",$mesures[$i]["timestamp"]);
+					// Cord GPS : Information non requise actuellement
+					$c=0;
+					$stmt_insertMetaMesures ->bindParam(":gps_lat",$c);
+					$stmt_insertMetaMesures ->bindParam(":gps_long",$c);
 					$stmt_insertMetaMesures ->bindParam(":hash",$mesures[$i]["hash"]);
 					$stmt_insertMetaMesures -> execute();
 
@@ -55,7 +59,7 @@
 					//Insertion Mesures
 					$stmt_insertMesures->bindParam(":id_capteur",$id_capteur);
 					$stmt_insertMesures->bindParam(":id_meta",$id_meta);
-					$stmt_insertMesures->bindParam(":valeur",$mesures[$i]["valeur"]);
+					$stmt_insertMesures->bindParam(":valeur",$mesures[$i]["value"]);
 					$stmt_insertMesures->execute();
 					}
 				}
