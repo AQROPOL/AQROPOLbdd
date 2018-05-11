@@ -1,0 +1,66 @@
+{"measures" :
+  [
+    {  "timestamp" : "2018-04-13T03:16:40.146+0000",
+      "hash" : "X1nOW0w2ueBlRE6OzEQDhGExiNsiLl9AnDHOyGcW+Sg=",
+      "nuc" : {
+        "token" : "token_de_mon_nuc_dev_001"
+      },
+      "sensor" : {
+        "id" : 3,
+        "name" : "SDS011",
+        "type" : "pm10",
+        "unity" : "ug/m3"
+      },
+      "value" : "5030",
+      "id" : 1,
+      "_links" : {
+        "self" : {
+          "href" : "http://10.42.0.1:8080/measures/1"
+        },
+        "measure" : {
+          "href" : "http://10.42.0.1:8080/measures/1{?projection}",
+          "templated" : true
+        },
+        "nuc" : {
+          "href" : "http://10.42.0.1:8080/measures/1/nuc"
+        },
+        "sensor" : {
+          "href" : "http://10.42.0.1:8080/measures/1/sensor{?projection}",
+          "templated" : true
+        }
+      }
+    },
+
+    {
+      "timestamp" : "2018-04-13T03:16:40.146+0000",
+      "hash" : "X1nOW0w2ueBlRE6OzEQDhGExiNsiLl9AnDHOyGcW+Sg=",
+      "nuc" : {
+        "token" : "token_de_mon_nuc_dev_001"
+      },
+      "sensor" : {
+        "id" : 3,
+        "name" : "SDS011",
+        "type" : "pm10",
+        "unity" : "ug/m3"
+      },
+      "value" : "5030",
+      "id" : 1,
+      "_links" : {
+        "self" : {
+          "href" : "http://10.42.0.1:8080/measures/1"
+        },
+        "measure" : {
+          "href" : "http://10.42.0.1:8080/measures/1{?projection}",
+          "templated" : true
+        },
+        "nuc" : {
+          "href" : "http://10.42.0.1:8080/measures/1/nuc"
+        },
+        "sensor" : {
+          "href" : "http://10.42.0.1:8080/measures/1/sensor{?projection}",
+          "templated" : true
+        }
+      }
+    }
+  ]
+}
