@@ -27,7 +27,7 @@
 					$stmt_insertHubs -> execute();
 
 					// Recuperer Id nuc
-					$hub = $db->prepare('SELECT id FROM hubs where name = '.$nuc);
+					$hub = $db->prepare('SELECT id FROM hubs where name = "'.$nuc.'"');
 					$hub->execute();
 					$id_nuc = $hub->fetchColumn();
 					echo("\n Nuc : ".$id_nuc);
