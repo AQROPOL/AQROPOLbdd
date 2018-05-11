@@ -19,7 +19,7 @@
 				$Size_Mesures = sizeof($mesures);
 
 				for ($i = 0; $i < $Size_Mesures; $i++) {
-					$nuc = $data["token"];
+					$nuc = $mesures[$i]["token"];
 					//Insertion Hubs
 					$stmt_insertHubs -> bindParam(":name",$nuc);
 					$stmt_insertHubs -> execute();
