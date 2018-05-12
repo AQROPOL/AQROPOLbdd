@@ -15,7 +15,7 @@
 				$id_capteur;
 				$id_meta;
 					//Tableau de Mesures
-				$mesures=$data["measures"];
+				$mesures=$data["_embedded"]["measures"];
 				$Size_Mesures = sizeof($mesures);
 
 				for ($i = 0; $i < $Size_Mesures; $i++) {
