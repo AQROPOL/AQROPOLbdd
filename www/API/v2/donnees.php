@@ -143,7 +143,7 @@
 					$queryOptions .= " AND";
 				}
 				list($year, $month, $day) = split('[/.-]', $_GET["date"]);
-				$queryOptions .= " YEAR(mt.date) = ".$year. "AND MONTH(mt.date) = ".$month. " AND DAY(mt.date) = ".$day ;
+				$queryOptions .= " YEAR(mt.date) = ".$year. " AND MONTH(mt.date) = ".$month. " AND DAY(mt.date) = ".$day ;
 				$ajout = true;
 			}
 			if (isset($_GET["year"])) {
