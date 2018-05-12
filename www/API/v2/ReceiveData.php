@@ -9,6 +9,7 @@
 		*/
 		if (isset($_POST["file"])) {
 			if(!empty($json_source)){
+				echo("POST RECU")
 				//Decode Json Android
 				$data=json_decode($_POST["file"],true);
 				$id_nuc;
@@ -17,6 +18,7 @@
 					//Tableau de Mesures
 				$mesures=$data["_embedded"]["measures"];
 				$Size_Mesures = sizeof($mesures);
+				echo "\n Taille Mesures: ".$Size_Mesures;
 
 				for ($i = 0; $i < $Size_Mesures; $i++) {
 
@@ -24,6 +26,7 @@
 					$nuc = $mesures[$i]["nuc"]["token"];
 					$stmt_insertHubs -> bindParam(":name",$nuc);
 					$stmt_insertHubs -> execute();
+					echo "\n Nuc Name : ".$nuc;
 
 					// Recuperer Id nuc
 					$hub = $db->prepare('SELECT id FROM hubs where name = "'.$nuc.'"');
