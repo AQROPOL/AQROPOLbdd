@@ -8,14 +8,14 @@
 		 * Utilisation du format JSON
 		*/
 		if (isset($_POST["file"])) {
-			if(!empty($json_source)){
+			if(!empty($_POST["file"])){
 				//Decode Json Android
 				$data=json_decode($_POST["file"],true);
 				$id_nuc;
 				$id_capteur;
 				$id_meta;
 					//Tableau de Mesures
-				$mesures=$data["measures"];
+				$mesures=$data["_embedded"]["measures"];
 				$Size_Mesures = sizeof($mesures);
 
 				for ($i = 0; $i < $Size_Mesures; $i++) {
