@@ -17,8 +17,10 @@
 					//Tableau de Mesures
 				$mesures=$data["_embedded"]["measures"];
 				$Size_Mesures = sizeof($mesures);
-				for($j=0; $j<5;$j++){
-				for ($i = $j*1000; $i < 1000; $i++) {
+				$b=1000;
+
+				for($j=0 ; $j < $Size_Mesures/$b  ; $j++){
+				for ($i = $j*$b; $i < $b*$j+$b; $i++) {
 
 					//Insertion Hubs
 					$nuc = $mesures[$i]["nuc"]["token"];
