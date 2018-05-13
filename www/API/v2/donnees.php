@@ -66,7 +66,7 @@
 		} else if ($_GET["query"] === 'filter') {
 
 			/* Gestion d'une requete avec des arguments pour filtrer les donnees */
-			boolean $jeanyves = false;
+			$jeanyves = false;
 
 			/* Gestion d'erreurs liees aux parametres fournis */
 			$err = "Parametre de filtre non supporte : ";

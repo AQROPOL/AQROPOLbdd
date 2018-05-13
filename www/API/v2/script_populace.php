@@ -10,7 +10,7 @@ for ($i = 1; $i < 100; $i++) {
      $aleaLat = $aleaLat / 10000;
      $aleaLong = rand(-14400, -18400);
      $aleaLong = $aleaLong / 10000;
-
+     $aleaDayRange = rand(0, 31);
      $date = date("Y-m-d");
      $randIdHub = rand(1,2);
      $hash = hash('sha256', $randIdHub.$date.$aleaLat.$aleaLong);
