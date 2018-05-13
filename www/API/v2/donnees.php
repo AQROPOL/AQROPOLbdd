@@ -66,7 +66,7 @@
 		} else if ($_GET["query"] === 'filter') {
 
 			/* Gestion d'une requete avec des arguments pour filtrer les donnees */
-			$jeanyves = false;
+			// $jeanyves = false;
 
 			/* Gestion d'erreurs liees aux parametres fournis */
 			$err = "Parametre de filtre non supporte : ";
@@ -199,13 +199,13 @@
 				$infoMesureGeometry["type"] 		= "Point";
 				$infoMesureGeometryCoordinates 		= array();
 				$infoMesureProperties["date"]		= $uneLigne["date"];
-				if ($jeanyves) {
-					$infoMesureGeometryCoordinates[0] 	= -1.638707;
-					$infoMesureGeometryCoordinates[1] 	= 48.115471;
-				} else {
+				// if ($jeanyves) {
+				// 	$infoMesureGeometryCoordinates[0] 	= -1.638707;
+				// 	$infoMesureGeometryCoordinates[1] 	= 48.115471;
+				// } else {
 					$infoMesureGeometryCoordinates[0] 	= $uneLigne["gps_long"];
 					$infoMesureGeometryCoordinates[1] 	= $uneLigne["gps_lat"];
-				}
+				// }
 				$infoMesureProperties["type"] 		= $uneLigne["type"];
 				$infoMesure["properties"] 			= $infoMesureProperties;
 				$infoMesureGeometry["coordinates"] 	= $infoMesureGeometryCoordinates;

@@ -10,12 +10,10 @@ for ($i = 1; $i < 100; $i++) {
      $aleaLat = $aleaLat / 10000;
      $aleaLong = rand(-14400, -18400);
      $aleaLong = $aleaLong / 10000;
-     $aleaDayRange = rand(0, 31);
      $date = date("Y-m-d");
-     $aleaDate = date('Y-m-d', strtotime('-'.$aleaDayRange.' day', strtotime($date)));
      $randIdHub = rand(1,2);
      $hash = hash('sha256', $randIdHub.$date.$aleaLat.$aleaLong);
-     $bool = $stmt_insertMetaMesures->execute(array(':id_hub' => $randIdHub, ':date' => $aleaDate, ':gps_long' => $aleaLong, ':gps_lat' => $aleaLat, ":hash" => $hash));
+     $bool = $stmt_insertMetaMesures->execute(array(':id_hub' => $randIdHub, ':date' => $date, ':gps_long' => $aleaLong, ':gps_lat' => $aleaLat, ":hash" => $hash));
 
      $randIdCapteur = rand(1,4);
      $randValeur = rand(0,10000);
