@@ -4,7 +4,7 @@ require 'db_access.php';
 
 /* Script PHP pour remplir la base de donnees pour des tests */
 
-for ($i = 1; $i < 1000; $i++) {
+for ($i = 1; $i < 100; $i++) {
 
      $aleaLat = rand(480200, 482000);
      $aleaLat = $aleaLat / 10000;
