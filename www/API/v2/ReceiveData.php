@@ -17,10 +17,8 @@
 					//Tableau de Mesures
 				$mesures=$data["_embedded"]["measures"];
 				$Size_Mesures = sizeof($mesures);
-				$b=1000;
 
-				for($j=0 ; $j < $Size_Mesures/$b  ; $j++){
-				for ($i = $j*$b; $i < $b*$j+$b; $i++) {
+				for ($i = 0; $i < $Size_Mesures; $i++) {
 
 					//Insertion Hubs
 					$nuc = $mesures[$i]["nuc"]["token"];
@@ -64,7 +62,6 @@
 					$stmt_insertMesures->bindParam(":valeur",$mesures[$i]["value"]);
 					$stmt_insertMesures->execute();
 					}
-				}
 				}
 				else {
 					echo " POST File Empty !";
