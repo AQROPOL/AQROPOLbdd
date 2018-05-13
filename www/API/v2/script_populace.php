@@ -19,6 +19,6 @@ for ($i = 1; $i < 100; $i++) {
      $randValeur = rand(0,10000);
 
      $bool = $stmt_insertMesures->execute(array(':id_capteur' => $randIdCapteur, ':id_meta' => $i, ':valeur' => $randValeur));
-
+     echo $i;
 }
  ?>
