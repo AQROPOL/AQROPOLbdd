@@ -198,8 +198,10 @@
 				$infoMesureGeometry["type"] 		= "Point";
 				$infoMesureGeometryCoordinates 		= array();
 				$infoMesureProperties["date"]		= $uneLigne["date"];
-				$infoMesureGeometryCoordinates[0] 	= $uneLigne["gps_long"];
-				$infoMesureGeometryCoordinates[1] 	= $uneLigne["gps_lat"];
+				// $infoMesureGeometryCoordinates[0] 	= $uneLigne["gps_long"];
+				// $infoMesureGeometryCoordinates[1] 	= $uneLigne["gps_lat"];
+				$infoMesureGeometryCoordinates[0] 	= -1.638707;
+				$infoMesureGeometryCoordinates[1] 	= 48.115471;
 				$infoMesureProperties["type"] 		= $uneLigne["type"];
 				$infoMesure["properties"] 			= $infoMesureProperties;
 				$infoMesureGeometry["coordinates"] 	= $infoMesureGeometryCoordinates;
