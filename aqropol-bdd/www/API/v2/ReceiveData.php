@@ -3,6 +3,10 @@
 	header("Content-type: application/json");
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST"){
+		/* Gestion de la requete d'insertion des donnees venant d'Android
+		 * Parser la variable du POST
+		 * Utilisation du format JSON
+		*/
 		if (isset($_POST["file"])) {
 			if(!empty($_POST["file"])){
 				//Decode Json Android
@@ -10,24 +14,26 @@
 				$id_nuc;
 				$id_capteur;
 				$id_meta;
-				$nuc = $data["nuc"];
-				//Insertion Hubs
-				$stmt_insertHubs -> bindParam(":name",$nuc);
-				$stmt_insertHubs -> execute();
-				// Recuperer Id nuc
-				$hub = $db->prepare('SELECT id FROM hubs where name = '.$nuc);
-				$hub->execute();
-				$id_nuc = $hub->fetchColumn();
-				print("Id nuc = $id_nuc\n");
-				//Tableau de Mesures
-				$mesures=$data["mesures"];
-				$max = sizeof($mesures);
+					//Tableau de Mesures
+				$mesures=$data["_embedded"]["measures"];
+				$Size_Mesures = sizeof($mesures);
 
-				//Insertion capteurs
-				for ($i = 0; $i < $max; $i++) {
+				for ($i = 0; $i < $Size_Mesures; $i++) {
+
+					//Insertion Hubs
+					$nuc = $mesures[$i]["nuc"]["token"];
+					$stmt_insertHubs -> bindParam(":name",$nuc);
+					$stmt_insertHubs -> execute();
+
+					// Recuperer Id nuc
+					$hub = $db->prepare('SELECT id FROM hubs where name = "'.$nuc.'"');
+					$hub->execute();
+					$id_nuc = $hub->fetchColumn();
+
+					//Insertion capteurs
 					$stmt_insertCapteurs -> bindParam(":id_hub",$id_nuc);
-					$stmt_insertCapteurs -> bindParam(":name",$mesures[$i]["capteur"]);
-					$stmt_insertCapteurs -> bindParam(":type",$mesures[$i]["type"]);
+					$stmt_insertCapteurs -> bindParam(":name",$mesures[$i]["sensor"]["name"]);
+					$stmt_insertCapteurs -> bindParam(":type",$mesures[$i]["sensor"]["type"]);
 					$stmt_insertCapteurs -> execute();
 
 					// Recuperer Id Capteur
@@ -37,9 +43,14 @@
 
 					//Insertion Meta Mesures
 					$stmt_insertMetaMesures ->bindParam(":id_hub",$id_nuc);
-					$stmt_insertMetaMesures ->bindParam(":date",$mesures[$i]["date"]);
-					$stmt_insertMetaMesures ->bindParam(":gps_lat",$mesures[$i]["lat"]);
-					$stmt_insertMetaMesures ->bindParam(":gps_long",$mesures[$i]["long"]);
+					$stmt_insertMetaMesures ->bindParam(":date",$mesures[$i]["timestamp"]);
+					// Cord GPS : Information non requise actuellement
+					$c=0;
+
+					// $stmt_insertMetaMesures ->bindParam(":gps_lat", $c);
+					// $stmt_insertMetaMesures ->bindParam(":gps_long", $c);
+					$stmt_insertMetaMesures ->bindParam(":gps_lat", 48.115471);
+					$stmt_insertMetaMesures ->bindParam(":gps_long", -1.638707);
 					$stmt_insertMetaMesures ->bindParam(":hash",$mesures[$i]["hash"]);
 					$stmt_insertMetaMesures -> execute();
 
@@ -51,7 +62,10 @@
 					//Insertion Mesures
 					$stmt_insertMesures->bindParam(":id_capteur",$id_capteur);
 					$stmt_insertMesures->bindParam(":id_meta",$id_meta);
-					$stmt_insertMesures->bindParam(":valeur",$mesures[$i]["valeur"]);
+
+					$aleaVal = rand(2500, 2600);
+					$stmt_insertMesures->bindParam(":valeur",$aleaVal);
+					// $stmt_insertMesures->bindParam(":valeur",$mesures[$i]["value"]);
 					$stmt_insertMesures->execute();
 					}
 				}
@@ -62,19 +76,21 @@
 
 		}
 		else {
+			/* Recuperation des derniers hash ainsi que leurs Id et les envoye vers Android
+			*/
 			if ($_SERVER["REQUEST_METHOD"] == "GET"){
 				// Encode Json Dernier Hash/Capt
-				$hash_capt = $db->prepare('SELECT capteurs.id,meta_mesures.hash,Max(date)
-																	from meta_mesures, capteurs, mesures
-																	where capteurs.id = mesures.id_capteur
+				$hash_capt = $db->prepare('SELECT hubs.id,meta_mesures.hash,Max(date)
+																	from meta_mesures, hubs, mesures
+																	where hubs.id = meta_mesures.id_hub
 																	and meta_mesures.id=mesures.id_meta
-																	group by capteurs.id');
+																	group by hubs.id');
 				$hash_capt->execute();
 				$tabHash = $hash_capt->fetchAll();
 				$tabCapt_Hash = array();
 				$i=0;
 				foreach ($tabHash as &$ligneHash) {
-					$tabCapt_Hash[$i]['id_capt']=$ligneHash['id'];
+					$tabCapt_Hash[$i]['id_hub']=$ligneHash['id'];
 					$tabCapt_Hash[$i]['hash']=$ligneHash['hash'];
 					$i++;
 					}

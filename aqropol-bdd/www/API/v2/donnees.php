@@ -66,7 +66,7 @@
 		} else if ($_GET["query"] === 'filter') {
 
 			/* Gestion d'une requete avec des arguments pour filtrer les donnees */
-
+			$jeanyves = false;
 
 			/* Gestion d'erreurs liees aux parametres fournis */
 			$err = "Parametre de filtre non supporte : ";
@@ -143,8 +143,9 @@
 					$queryOptions .= " AND";
 				}
 				list($year, $month, $day) = split('[/.-]', $_GET["date"]);
-				$queryOptions .= " YEAR(mt.date) = ".$year. "AND MONTH(mt.date) = ".$month. " AND DAY(mt.date) = ".$day ;
+				$queryOptions .= " YEAR(mt.date) = ".$year. " AND MONTH(mt.date) = ".$month. " AND DAY(mt.date) = ".$day ;
 				$ajout = true;
+				$jeanyves = true;
 			}
 			if (isset($_GET["year"])) {
 				if ($ajout) {
@@ -175,7 +176,7 @@
 				$ajout = true;
 			}
 			$query .= $queryOptions . " AND m.id_meta = mt.id AND m.id_capteur = c.id;";
-			echo $query;
+			// echo $query;
 			/* Execution SQL */
 			$stmt = $db_read->prepare($query);
 			$stmt->execute();
@@ -198,8 +199,13 @@
 				$infoMesureGeometry["type"] 		= "Point";
 				$infoMesureGeometryCoordinates 		= array();
 				$infoMesureProperties["date"]		= $uneLigne["date"];
+				/*if ($jeanyves) {
+				 	$infoMesureGeometryCoordinates[0] 	= -1.638707;
+					$infoMesureGeometryCoordinates[1] 	= 48.115471;
+				} else {*/
 				$infoMesureGeometryCoordinates[0] 	= $uneLigne["gps_long"];
 				$infoMesureGeometryCoordinates[1] 	= $uneLigne["gps_lat"];
+				// }
 				$infoMesureProperties["type"] 		= $uneLigne["type"];
 				$infoMesure["properties"] 			= $infoMesureProperties;
 				$infoMesureGeometry["coordinates"] 	= $infoMesureGeometryCoordinates;
