@@ -64,7 +64,8 @@
 					$stmt_insertMesures->bindParam(":id_meta",$id_meta);
 
 					$aleaVal = rand(2500, 2600);
-					$stmt_insertMesures->bindParam(":valeur",$aleaVal);
+					$ar = unpack("C*", pack("L", $aleaVal));
+					$stmt_insertMesures->bindParam(":valeur",$ar);
 					// $stmt_insertMesures->bindParam(":valeur",$mesures[$i]["value"]);
 					$stmt_insertMesures->execute();
 					}
