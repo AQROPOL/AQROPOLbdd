@@ -199,13 +199,13 @@
 				$infoMesureGeometry["type"] 		= "Point";
 				$infoMesureGeometryCoordinates 		= array();
 				$infoMesureProperties["date"]		= $uneLigne["date"];
-				if ($jeanyves) {
+				/*if ($jeanyves) {
 				 	$infoMesureGeometryCoordinates[0] 	= -1.638707;
 					$infoMesureGeometryCoordinates[1] 	= 48.115471;
-				} else {
-					$infoMesureGeometryCoordinates[0] 	= $uneLigne["gps_long"];
-					$infoMesureGeometryCoordinates[1] 	= $uneLigne["gps_lat"];
-				}
+				} else {*/
+				$infoMesureGeometryCoordinates[0] 	= $uneLigne["gps_long"];
+				$infoMesureGeometryCoordinates[1] 	= $uneLigne["gps_lat"];
+				// }
 				$infoMesureProperties["type"] 		= $uneLigne["type"];
 				$infoMesure["properties"] 			= $infoMesureProperties;
 				$infoMesureGeometry["coordinates"] 	= $infoMesureGeometryCoordinates;
