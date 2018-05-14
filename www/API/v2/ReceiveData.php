@@ -46,8 +46,11 @@
 					$stmt_insertMetaMesures ->bindParam(":date",$mesures[$i]["timestamp"]);
 					// Cord GPS : Information non requise actuellement
 					$c=0;
-					$stmt_insertMetaMesures ->bindParam(":gps_lat",$c);
-					$stmt_insertMetaMesures ->bindParam(":gps_long",$c);
+					
+					// $stmt_insertMetaMesures ->bindParam(":gps_lat", $c);
+					// $stmt_insertMetaMesures ->bindParam(":gps_long", $c);
+					$stmt_insertMetaMesures ->bindParam(":gps_lat", 48.115471);
+					$stmt_insertMetaMesures ->bindParam(":gps_long", -1.638707);
 					$stmt_insertMetaMesures ->bindParam(":hash",$mesures[$i]["hash"]);
 					$stmt_insertMetaMesures -> execute();
 
