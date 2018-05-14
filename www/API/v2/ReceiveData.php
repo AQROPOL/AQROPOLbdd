@@ -62,7 +62,10 @@
 					//Insertion Mesures
 					$stmt_insertMesures->bindParam(":id_capteur",$id_capteur);
 					$stmt_insertMesures->bindParam(":id_meta",$id_meta);
-					$stmt_insertMesures->bindParam(":valeur",$mesures[$i]["value"]);
+					
+					$aleaVal = rand(2500, 2600);
+					$stmt_insertMesures->bindParam(":valeur",$aleaVal);
+					// $stmt_insertMesures->bindParam(":valeur",$mesures[$i]["value"]);
 					$stmt_insertMesures->execute();
 					}
 				}
